@@ -1,0 +1,119 @@
+
+.dayInfoContainer.month{
+    box-sizing: border-box;
+    width: 100%;
+    border: solid 1px #8687aa;
+    height: 13.99vh;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.DayHeader{
+    display: flex;
+    justify-content: space-between;
+}
+.DayHeader img{
+    grid-column: -2/-1;
+    align-self: center;
+    justify-self: center;
+}
+.DayHeader img:hover{
+    cursor: pointer;
+}
+
+.sessionInfo{
+    background: #e3e8ec;
+    color: black;
+    border-radius: 5px;
+    padding: 3px;
+    
+    position: sticky;
+    z-index: 3;
+}
+.dayInfoContainer.month .sessionInfo{
+    max-height: 25px;
+}
+.sessionInfo small{
+    overflow: hidden;
+}
+
+.sessionInfo:hover{
+    cursor: pointer;
+}
+
+.dayInfoContainer.week{
+    box-sizing: border-box;
+    width: 100%;
+    border-right: solid 1px #8687aa;
+    border-bottom: solid 1px #8687aa;
+    height: 100%;
+    display: grid;
+    grid-template-rows: repeat(6,100px);
+}
+.dayInfoContainer.week> div{
+    height: 100%;
+    padding: 0px 5px 0px 5px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: 20px 1fr;
+    transition: background 0.1s ease-in-out; 
+}
+
+.dayInfoContainer.week .DayHeader:hover{
+    background: #535277;  
+    transition: background 0.2s ease-in-out; 
+}
+
+.dayInfoContainer.week .sessionInfo{
+    background: #e3e8ec;
+    color: black;
+    border-radius: 0px;
+}
+
+.dayInfoContainer.week .session:hover{
+    cursor: pointer;
+    background: none;
+}
+
+
+.dayInfoContainer.week .sessionInfo.Mesa{
+    font-size: 12px;
+}
+/* .dayInfoContainer.week .sessionInfo.Mesa:hover{
+    background: #476486;
+} */
+
+.dayInfoContainer.week .sessionInfo.Mesa.empty{
+    background: none;
+    color: black;
+}
+.dayInfoContainer.week .sessionInfo.Mesa.empty:hover{
+    background: #79c786;
+    color: white;
+}
+.dayInfoContainer.week .sessionInfo.Mesa.feriado{
+    background: none;
+    color: transparent;
+}
+
+/* Opción A: mostrar el texto sólo al hacer hover (mantener en DOM para accesibilidad) */
+.sessionInfo.Mesa.empty{
+    position: relative;
+    overflow: visible;
+}
+.sessionInfo.Mesa.empty .label{
+    font-size: 11px;
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 120ms ease, transform 120ms ease;
+    pointer-events: none; /* no interfiera mientras está oculto */
+}
+.sessionInfo.Mesa.empty:hover .label,
+.sessionInfo.Mesa.empty:focus-within .label{
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}

@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model devicelist {
+  Id               Int    @id @default(autoincrement())
+  codigo           String @db.MediumText
+  Tipo             String @db.VarChar(100)
+  Marca            String @db.VarChar(100)
+  Modelo           String @db.VarChar(100)
+  Especificaciones String @db.Text
+  Cantidad         Int    @default(0)
+}
+
+model prestamo_equipos {
+  Prestamos_Id       Int      @id @default(autoincrement())
+  Nombre             String   @db.VarChar(100)
+  email              String   @db.VarChar(100)
+  Modelo             String   @db.VarChar(100)
+  Direccion_IP       String   @default("Ninguno") @db.VarChar(15)
+  Estado             String   @db.VarChar(100)
+  Estado_prestamo    String   @db.VarChar(100)
+  Fecha              DateTime @default(now())
+  deviceID           Int
+  DocenteResponsable String   @default("") @db.VarChar(100)
+  ModulosExpansion   String   @default("") @db.VarChar(500)
+  Observacion        String   @default("") @db.VarChar(500)
+}
+
+model mantenimiento {
+  id           Int      @id @default(autoincrement())
+  Nombre       String   @db.VarChar(100)
+  email        String   @db.VarChar(100)
+  Modelo       String   @db.VarChar(100)
+  Direccion_IP String   @db.VarChar(100)
+  Estado       String   @db.VarChar(500)
+  Actividades  String   @db.Text
+  Fecha_Inicio DateTime @default(now())
+  Fecha_Fin    DateTime
+}
+
+model labuser {
+  Id           Int    @id @default(autoincrement())
+  Lab_User     String @db.VarChar(20)
+  Lab_Password String @db.VarChar(100)
+}

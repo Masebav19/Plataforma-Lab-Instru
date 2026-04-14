@@ -1,0 +1,37 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Servidor para prestamo de equipos",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "server-LabDevices-project"
+  },
+  "keywords": [
+    "servidor",
+    "prestamos",
+    "equipos",
+    "laboratorio"
+  ],
+  "author": "Mateo Vásquez",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^5.17.0",
+    "bcrypt": "6.0.0",
+    "cors": "2.8.5",
+    "dotenv": "16.4.5",
+    "express": "4.19.2",
+    "nodemailer": "7.0.12",
+    "prisma": "5.17.0",
+    "zod": "3.23.8"
+  },
+  "devDependencies": {
+    "nodemon": "3.1.4"
+  }
+}

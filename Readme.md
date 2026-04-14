@@ -1,0 +1,12 @@
+Create the virtual environments
+ Calendar server
+ - EMAIL_PASSWORD
+ - PRIMARY_EMAIL_TO
+ - PRIMARY_EMAIL_FROM
+ - SECUNDARY_EMAIL_TO
+ Device Sever
+ - DATABASE_URL
+ - SERVER_PORT
+ - EMAIL_PASSWORD
+ - PRIMARY_EMAIL_TO
+ - PRIMARY_EMAIL_FROM

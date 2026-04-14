@@ -1,0 +1,64 @@
+.device-Container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column: 1/-1;
+    overflow-y: auto;
+    max-height: 20vh;
+    gap: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    
+}
+.device-Container .deviceInfoContainer{
+    border: 1px solid #767676;
+    padding: 5px;
+    height: 20px;
+    border-radius: 10px;
+}
+
+.device-Container .deviceInfoContainer:hover{
+    background: #9d9d9daa;
+    cursor: pointer;
+}
+#deviceSelectedContainer{
+
+    width: 4vw;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    justify-content: center;
+    align-items: center;
+} 
+.TypeDeviceConatiner{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    animation: Jump 0.6s cubic-bezier(0.25,0.25,0.75,0.75) forwards;
+}
+
+.TypeDeviceConatiner span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e88673;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    padding: 1px;
+}
+
+@keyframes Jump {
+    0%{
+        transform: translate(-200px,100px);
+    }
+    50%{
+        transform: translate(-100px,-50px);
+    }
+    100%{
+       transform: translate(0,0); 
+    }
+}

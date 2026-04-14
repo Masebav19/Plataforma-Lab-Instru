@@ -1,0 +1,61 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #1a3a5c;
+  --color-primary-light: rgba(26, 58, 92, 0.06);
+  --color-text: #111827;
+  --color-text-secondary: #4b5563;
+  --color-text-muted: #6b7280;
+  --color-bg: #ffffff;
+  --color-bg-subtle: #f8f9fb;
+  --color-border: rgba(0, 0, 0, 0.06);
+  --color-footer-bg: #0f1f33;
+  --color-accent-green: #34d399;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Roboto Slab', Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+#Option{
+  margin-top: 40px;
+  height:900px;
+  width:100%;
+  animation: ShowUp 0.8s both ease-in-out;
+}
+
+@keyframes ShowUp {
+  0%{
+    height: 0px;
+  }
+
+  100%{
+    height: 900px;
+  }
+}

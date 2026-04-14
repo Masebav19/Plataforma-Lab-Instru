@@ -1,0 +1,53 @@
+### GET prestamo
+GET http://localhost:5000/api/prestamo
+### POST prestamo
+POST http://localhost:5000/api/prestamo
+Content-Type: application/json
+
+{
+    "Nombre": "Mateo Vásquez",
+    "email": "mateo.vasquez@epn.edu.ec",
+    "Modelo": "PLC Twido modelo TWDLCAA24DRF",
+    "Direccion_IP": "192.168.10.6",
+    "ModulosExpansion": "Ninguno"
+}
+
+### GET Devolucion
+GET http://localhost:5000/api/devolucion
+### POST prestamo
+POST http://localhost:5000/api/devolucion
+Content-Type: application/json
+
+{
+    "email": "mateo.vasquez@epn.edu.ec",
+    "Modelo": "PLC Twido modelo TWDLCAA24DRF",
+    "Observacion": "Ninguno",
+    "DocenteResponsable": "mateo.vasquez@epn.edu.ec",
+    "Estado": "Ninguno"
+}
+
+### GET Mantenimiento
+GET http://localhost:5000/api/newmantenimiento
+
+### POST new/end Mantenmiento
+POST http://localhost:5000/api/mantenimiento/new
+Content-Type: application/json
+
+{
+    "Nombre": "Mateo Vásquez",
+    "email": "mateo.vasquez@epn.edu.ec",
+    "Modelo": "PLC Twido modelo TWDLCAA16RF",
+    "Especificaciones": "192.168.10.5",
+    "Actividades": "Pruebas de red"
+}
+### Get equipos en mantenimiento
+GET http://localhost:5000/api/endmantenimiento
+### POST new/end Mantenmiento
+POST http://localhost:5000/api/mantenimiento/end
+Content-Type: application/json
+
+{
+    "email": "mateo.vasquez@epn.edu.ec",
+    "Modelo": "PLC Twido modelo TWDLCAA16RF",
+    "Estado": "OK"
+}

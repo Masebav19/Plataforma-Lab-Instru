@@ -1,0 +1,87 @@
+
+GET http://localhost:4000/calendar/getDaysbyMonth/10/2025
+
+###
+GET http://172.31.33.28:4000/calendar/getDaysbyWeek/10/2025/8
+
+### stefany.villarreal@epn.edu.ec
+
+POST http://172.31.33.25:4000/calendar/NewSession
+Content-Type: application/json
+
+{
+    "Asunto": "Mantenimiento de equipos",
+    "Hora_inicial": "12:00",
+    "Hora_final": "13:00",
+    "Periodicidad": "Semanalmente",
+    "Responsable": "Johnny Chuqui",
+    "Correo_responsable": "johnny.chuqui@epn.edu.ec",
+    "fecha_inicio": "2026-04-10",
+    "Mesas": "Mesa3",
+    "Equipos_usados": "Ninguno"
+}
+
+### 
+DELETE http://172.31.33.25:4000/calendar/DeleteSession
+Content-Type: application/json
+
+{
+    "Asunto": "Laboratorio de Sensores y transductores GR1",
+    "Hora_inicial": "16:00",
+    "Correo": "stefany.villarreal@epn.edu.ec"
+}
+
+###
+POST http://172.31.33.28:4000/calendar/SignUp
+Content-Type: application/json
+
+{
+    "Nombre": "Mateo",
+    "Apellido": "Vásquez",
+    "Correo": "mateo.vasquez@epn.edu.ec",
+    "Tipo": "Técnico docente",
+    "Password": "labRedes"
+}
+
+###
+POST http://172.31.33.28:4000/calendar/LogIn
+Content-Type: application/json
+
+{
+    "Correo": "mateo.vasquez@epn.edu.ec",
+    "Password": "password123"
+}
+
+###
+DELETE http://172.31.33.28:4000/calendar/DeleteUser
+Content-Type: application/json
+
+{
+    "Correo": "margarita.jaramillo@epn.edu.ec",
+    "Password": "labRedes"
+}
+
+###
+POST http://172.31.33.28:4000/calendar/OpenTicket
+Content-Type: application/json
+
+{
+    "Asunto": "Falla en el proyector",
+    "Descripcion": "El proyector no enciende",
+    "Prioridad": "Alta",
+    "Solicitante": "Mateo Vásquez",
+    "Correo_solicitante": "mateo.vasquez@epn.edu.ec"
+}
+
+###
+POST http://172.31.33.28:4000/calendar/CloseTicket
+Content-Type: multipart/form-data;
+
+###
+GET http://172.31.33.28:4000/calendar/GetNewTickets
+
+###
+GET http://172.31.33.28:4000/calendar/GetClosedTickets
+
+###
+GET http://172.31.33.28:4000/calendar/GetTicketImage/00SvvP7kanzeayoWKdkNu
