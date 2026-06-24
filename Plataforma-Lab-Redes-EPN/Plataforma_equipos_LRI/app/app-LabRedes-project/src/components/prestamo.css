@@ -1,0 +1,93 @@
+.optionPrestamo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1px 5vw 1px 5vw;
+}
+.optionPrestamo div{
+    padding: 10px;
+    border: solid 1px var(--Text);
+    border-radius: 10px;
+    transition: background ease-in-out 0.2s,
+    color ease-in-out 0.3s;
+}
+
+.optionPrestamo div:hover{
+    background: var(--contraste);
+    cursor: pointer;
+    color: var(--shadow);
+    transition: background ease-in-out 0.2s,
+    color ease-in-out 0.3s;
+}
+.selected{
+    background: var(--contraste);
+    color: var(--shadow); 
+}
+
+.ListDeviceContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+.MarcaFilter, .ModeloFilter{
+    height: 15vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    border: solid 1px var(--Text);
+    border-radius: 10px;
+    padding: 2vh 1vw 2vh 1vw;
+}
+fieldset{
+    border: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit ,minmax(9vw,auto));
+    gap: 20px;
+}
+.optionMarca,.optionModelo{
+    padding: 7px;
+    border: solid 1px var(--contraste);
+    border-radius: 7px;
+    overflow: hidden;
+}
+.optionMarca:hover,.optionModelo:hover{
+    background: var(--contraste);
+    cursor: pointer;
+    color: var(--shadow);
+}
+.ListDevices{
+    height: 25vh;
+}
+.tableDevice{
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.tableDevice .tableHeader{
+    display: flex;
+    flex-direction: row;
+    
+}
+.tableDevice .TableRow{
+    display: flex;
+    flex-direction: row;
+}
+.TableRow:hover{
+    cursor: pointer;
+    background: var(--contraste);
+    color: var(--shadow); 
+}
+.tableDevice span{
+    display: block;
+    padding: 2px;
+    width: 9vw;
+    min-height: 15px;
+    border: solid 1px var(--Text);
+    text-align: center;
+    overflow: hidden;
+}
+.tableDevice span input{
+    width: 3vw;
+}

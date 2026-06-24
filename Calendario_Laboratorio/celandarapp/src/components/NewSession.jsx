@@ -5,6 +5,9 @@ import "./NewSession.css"
 import RequestsManager from "../utils/RequetsManager.js"
 
 const VITE_DEVICE_SERVER_PORT = 5000
+const DEVICETYPES = ["Controlador","Termómetro","Modem Hart","Tarjeta de adquisición","Planta",
+  "Medicion","Fuente","Osciloscopio","Plancha","Variador","Motor","Balanza Digital","PLC",
+  "Sensor","Actuador","Punta de prueba Tektronix","Computador"]
 
 export default function NewSession({Log,SetLog,VITE_SERVER_URL,PORT}){
     const [devices, SetDevices] = useState(undefined)
@@ -162,26 +165,17 @@ export default function NewSession({Log,SetLog,VITE_SERVER_URL,PORT}){
           </div>
 
           <div id="deviceSelectedContainer">
-            {devices?.find(device => device.IsSelected && device.Tipo === "Medicion")&&
-            <div className="TypeDeviceConatiner">
-                <img src="../public/Medicion.svg" alt="Medicion" />
-                <span><p>{`${devices.filter(device => device.IsSelected && device.Tipo === "Medicion").length}`}</p></span>
-            </div>}
-            {devices?.find(device => device.IsSelected && device.Tipo === "Actuador")&&
-            <div className="TypeDeviceConatiner">
-                <img src="../public/Actuador.svg" alt="Actuador" />
-                <span><p>{`${devices.filter(device => device.IsSelected && device.Tipo === "Actuador").length}`}</p></span>
-            </div>}
-            {devices?.find(device => device.IsSelected && device.Tipo === "Sensor")&&
-            <div className="TypeDeviceConatiner">
-                <img src="../public/Sensor.svg" alt="Sensor" />
-                <span><p>{`${devices.filter(device => device.IsSelected && device.Tipo === "Sensor").length}`}</p></span>
-            </div>}
-            {devices?.find(device => device.IsSelected && device.Tipo === "Fuente")&&
-            <div className="TypeDeviceConatiner">
-                <img src="../public/Fuente.svg" alt="Fuente" />
-                <span><p>{`${devices.filter(device => device.IsSelected && device.Tipo === "Fuente").length}`}</p></span>
-            </div>}
+            {
+              DEVICETYPES.map(type =>{
+                return(
+                  devices?.find(device => device.IsSelected && device.Tipo === type)&&
+                  <div className="TypeDeviceConatiner">
+                    <img src={`../public/${type}.webp`} alt="Medicion" />
+                    <span><p>{`${devices.filter(device => device.IsSelected && device.Tipo === type).length}`}</p></span>
+                  </div>
+                )
+              })
+            }
           </div>
         </div>
     )

@@ -59,7 +59,7 @@ main{
   inset: 0;
   margin: auto;
   height: 80vh;
-  background: #262532ee;
+  background: #f6f6f9ee;
   border: solid 2px #f6f6f9;
   box-shadow: 1px 1px 1px 1px #353446;
   display: flex;
@@ -111,7 +111,7 @@ main{
 }
 
 .SessionPanel{
-  color: white;
+  color: black;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 7px;

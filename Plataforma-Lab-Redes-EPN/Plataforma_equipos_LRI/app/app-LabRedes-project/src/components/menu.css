@@ -1,0 +1,26 @@
+.Optioncontainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 2vw 0px 2vw;
+}
+
+.Option{
+    border: solid 1px var(--shadow);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+    padding: 10px 20px 10px 20px;
+    border-radius: 8px;
+    transition: background ease-in-out 0.2s,
+    color ease-in-out 0.3s;
+}
+.Option:hover{
+    background: var(--contraste);
+    cursor: pointer;
+    color: var(--shadow);
+    transition: background ease-in-out 0.2s,
+    color ease-in-out 0.3s;
+}

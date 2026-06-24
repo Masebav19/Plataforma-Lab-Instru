@@ -1,26 +1,25 @@
-import { useState } from 'react'
-import LogIn from './LogIn.jsx'
-import Panel from './panel.jsx'
+import Panel from './components/panel.jsx'
 
 function App() {
-  const [Log,SetLog]= useState("NoLog")
-  const VITE_SERVER_URL = "http://172.31.33.25"
+  const VITE_SERVER_URL = "http://172.31.33.23"
   const PORT = 5000
   return (
     <>
-      <div className="Major-container">
-        {Log === "NoLog" &&<LogIn 
-        SetLog = {SetLog}
-        VITE_SERVER_URL={VITE_SERVER_URL}
-        PORT = {PORT}
-        />}
-        {Log === "Login" && <Panel
-        SetLog = {SetLog}
-        VITE_SERVER_URL={VITE_SERVER_URL}
-        PORT = {PORT}
-        />}        
-      </div>
+      <header>
+        <h1>Laboratorio de instrumentación industrial</h1>
+        <h2>Plataforma de préstamos de equipos</h2>
+      </header>
+      <main>
+        <div className="Main-container">
+          <Panel
+          VITE_SERVER_URL={VITE_SERVER_URL}
+          PORT = {PORT}
+          />   
+        </div>
+      </main>
+      <footer>
 
+      </footer>
     </>
   )
 }
