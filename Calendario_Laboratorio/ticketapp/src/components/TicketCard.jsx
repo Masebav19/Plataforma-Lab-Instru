@@ -11,7 +11,7 @@ export default function TicketCard ({ ticket }){
                 <small><strong>Fecha de cierre:</strong> {ticket.fecha_cierre.split(' ')[0]} {ticket.fecha_cierre.split(' ')[1].split('.')[0]}</small>
             </span>
             <div className="imagetickerConatiner">
-                <img src={`http://172.31.33.28:4000/calendar/GetTicketImage/${ticket.id_ticket}`} alt="" />
+                <img src={`http://127.0.0.1:4000/calendar/GetTicketImage/${ticket.id_ticket}`} alt="" />
             </div>
             <div className="Observaciones">
                 <h5>Observaciones</h5>

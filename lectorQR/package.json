@@ -1,0 +1,19 @@
+{
+  "name": "lectorqr",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Mateo Vasquez",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cls && node index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
+}

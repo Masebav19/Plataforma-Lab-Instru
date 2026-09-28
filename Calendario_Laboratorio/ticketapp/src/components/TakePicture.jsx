@@ -48,7 +48,7 @@ export default function TakePicture({ formData, SetPhoto, SetOption }){
         videoRef.current.srcObject = null
 
         try {
-            const result = await fetch('http://172.31.33.28:4000/calendar/CloseTicket',{
+            const result = await fetch('http://127.0.0.1:4000/calendar/CloseTicket',{
                 method: "POST",
                 body: NewformData
             })

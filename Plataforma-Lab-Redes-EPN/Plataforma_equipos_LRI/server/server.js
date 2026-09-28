@@ -3,7 +3,8 @@ import env from './controllers/env.js'
 import bcript from 'bcrypt'
 import cors from 'cors'
 import {create_let_device,create_return_device,read_user_credencials,
-    read_available_devices,read_loaned_devices,create_maintance,read_maintance
+    read_available_devices,read_loaned_devices,create_maintance,read_maintance,
+    getAlldevices
 } from './controllers/MysqlClient.js'
 import { SenEmail } from './messages/sendEmail.js'
 import { validateLetDevice, validateReturnedDevice,validateNewMaintance,validateEndMaintance} from './Schema/device_schema.js'
@@ -171,6 +172,14 @@ server.post('/api/mantenimiento/:action',(req,res)=>{
         })
     }
 
+})
+
+server.get('/api/devices',(req,res)=>{
+    getAlldevices().then(result =>{
+        res.json(result)
+    }).catch(error=>{
+        res.json({error})
+    })
 })
 server.listen(venv.VITE_SERVER_PORT,()=>{
     console.log(`Servidor escuchando en el puerto ${venv.VITE_SERVER_PORT}`)

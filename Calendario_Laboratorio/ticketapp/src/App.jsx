@@ -6,7 +6,7 @@ import Consulta from './components/Consulta'
 
 function App() {
   const [menu, SetMenu] = useState(undefined)
-  const VITE_SERVER_URL = "http://172.31.33.25"
+  const VITE_SERVER_URL = "http://127.0.0.1"
   const PORT = 4000
   return (
     <>

@@ -68,8 +68,7 @@ export default function NewSession({Log,SetLog,VITE_SERVER_URL,PORT}){
         
     }
     return(
-        <div className="SessionConatiner">
-          
+        <div className="SessionConatiner">          
           <div className="SessionPanel">
             <div className="inputContainer">
               <label htmlFor="Asunto">Asunto</label>

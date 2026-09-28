@@ -33,7 +33,8 @@
     height: 15vh;
     overflow-y: auto;
     scrollbar-width: thin;
-    border: solid 1px var(--Text);
+    border: solid 2px var(--Text);
+    box-shadow: 1px 1px 2px 0px var(--Text);
     border-radius: 10px;
     padding: 2vh 1vw 2vh 1vw;
 }

@@ -12,7 +12,6 @@ function Prestamo({SetAction,VITE_SERVER_URL,PORT}){
         const Marcas = useRef(undefined)
         const Modelos = useRef(undefined)
         const Especificaciones = useRef(undefined)
-        const SelectedDevice = useRef(undefined)
         useEffect(()=>{
             async function FecthData (){
                 const NewData = await requestServer({PORT,VITE_SERVER_URL,rute:"prestamo"})
@@ -24,11 +23,10 @@ function Prestamo({SetAction,VITE_SERVER_URL,PORT}){
             }
             if(option === "prestamo") FecthData()
         },[option])
-        async function HandleSelectedDevice(e){
-            
-            console.log(SelectedDevice.current)
-            if(SelectedDevice.current.classList.contains("selected")) SelectedDevice.current.classList.remove("selected")
-            else SelectedDevice.current.classList.add("selected")
+        async function HandleSelectDevice(e){
+            const element = e.target.parentElement
+            if(element.classList.contains("selected")) element.classList.remove("selected")
+            else element.classList.add("selected")
         }
         return(
             <>
@@ -71,13 +69,13 @@ function Prestamo({SetAction,VITE_SERVER_URL,PORT}){
                             {
                                 Especificaciones.current.map((especificacion,index) =>{
                                     return(
-                                        <div className="TableRow" onClick={HandleSelectedDevice} ref={SelectedDevice} key={index}>
-                                            <span>{especificacion}</span>
-                                            <span>{ListDevices.find(device=>{return device.DirIp === especificacion}).Modelo}</span>
-                                            <span>{ListDevices.find(device=>{return device.DirIp === especificacion}).Tipo}</span>
+                                        <div className="TableRow" key={index}>
+                                            <span onClick={HandleSelectDevice} >{especificacion}</span>
+                                            <span onClick={HandleSelectDevice} >{ListDevices.find(device=>{return device.DirIp === especificacion}).Modelo}</span>
+                                            <span onClick={HandleSelectDevice} >{ListDevices.find(device=>{return device.DirIp === especificacion}).Tipo}</span>
                                             <span>
                                                 <input id= {`Input-${index}`} 
-                                                list={`Cantidad-${index}`} defaultValue={ListDevices.filter(device=>{return device.DirIp === especificacion}).length}
+                                                list={`Cantidad-${index}`}
                                                 />
                                                 <datalist id={`Cantidad-${index}`}>
                                                     {Array.from({length:ListDevices.filter(device=>{return device.DirIp === especificacion}).length}).map((v,i)=>{

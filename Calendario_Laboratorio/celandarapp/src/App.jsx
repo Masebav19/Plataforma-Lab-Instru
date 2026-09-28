@@ -17,7 +17,7 @@ function App() {
   const Name = useRef(undefined)
   const Type = useRef(undefined)
 
-  const VITE_SERVER_URL = "http://172.31.33.23"
+  const VITE_SERVER_URL = "http://127.0.0.1"
   const PORT = 4000
 
   function handleChangeMonth(){
@@ -203,6 +203,7 @@ function App() {
           SetLog={SetLog}
           VITE_SERVER_URL={VITE_SERVER_URL}
           PORT={PORT}
+          
         />
       }
     </header>

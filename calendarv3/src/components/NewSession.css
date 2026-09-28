@@ -1,0 +1,89 @@
+.NewSessionContainer{
+    position: fixed;
+    transform: translate(30vw,-20%);
+    width: 35vw;
+    border: solid 2px var(--border);
+    background: var(--bg);
+    border-radius: 20px;
+    animation: ShowWidth ease-in-out both 0.2s;
+}
+ .NewSessionContainer>div:first-child{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 6vh;
+    background: var(--accent);
+    border-radius: 20px 20px 0px 0px;
+}
+
+.NewSessionContainer>div:first-child h3{
+    padding-left: 30px;
+}
+
+.NewSessionContainer>div:first-child svg:hover{
+    cursor: pointer;
+
+}
+.NewSessionContainer>div:first-child svg{
+    padding-right: 20px;
+}
+
+.stepPosContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 5vh;
+    padding: 5px;
+}
+.stepPosContainer .StepNumber.Active{
+    background: var(--accent);
+    padding: 6px;
+    border-radius: 50%;
+    width: 1.5vw;
+    height: 1.5vw;
+    text-align: center;
+    transition: background ease-in-out 0.3s;
+}
+.stepPosContainer .StepNumber{
+    background: var(--text-muted);
+    padding: 6px;
+    border-radius: 50%;
+    width: 1.5vw;
+    height: 1.5vw;
+    text-align: center;
+    transition: background ease-in-out 0.3s;
+}
+
+.NewSessionBody{
+    animation: ShowUp both ease-in-out 0.3s ;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+
+
+@keyframes ShowUp {
+    0%{
+        transform: scaleY(0);
+    }
+    100%{
+        transform: scaleY(1);
+    }
+}
+@keyframes ShowWidth {
+    0%{
+        scale: 0;
+    }
+    100%{
+        scale: 1;
+    }
+}
+
+@media(max-width:670px){
+    .NewSessionContainer{
+        width: 70vw;
+        transform: translate(15%,-20%);
+    }
+}

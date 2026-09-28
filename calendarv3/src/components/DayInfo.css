@@ -1,0 +1,36 @@
+.Hour .HourContainer{
+    height: 12vh;
+    width: 4.5vw;
+    position: relative;
+    font-size: 14px;
+}
+.HourContainer small{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-100%,50%);
+    padding: 0 2px;
+}
+.DaysInfoConatiner{
+    display: grid;
+    grid-template-columns: repeat(7,13.2dvw);
+}
+.DayInfoContainer{
+    border: solid 1px var(--border);
+}
+.DayInfoContainer div{
+    border-bottom: solid 1px var(--border);
+}
+
+.sessionEmpty:hover{
+    background: var(--border);
+    cursor: pointer;
+
+}
+
+@media (max-width:670px){
+    .HourContainer small{
+        font-size: 2vw;
+        left: 70%;
+    }
+}

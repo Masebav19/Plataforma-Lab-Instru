@@ -142,14 +142,10 @@ async function read_maintance(){
     return data
 }
 
-// async function delete_let_device(){
-//     await Prisma.mantenimiento.delete({where:{
-//         id:6
-//     }})
-//     await Prisma.$disconnect
-// }
-
-// delete_let_device().then(console.log("Archivo borrado"))
+export async function getAlldevices(){
+    const data = await Prisma.devicelist.findMany()
+    return data
+}
 
 export {create_let_device,create_return_device,read_user_credencials,
     read_available_devices,read_loaned_devices,create_maintance,read_maintance}

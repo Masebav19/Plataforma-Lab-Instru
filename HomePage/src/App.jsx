@@ -5,17 +5,18 @@ import Hero from "./components/Hero"
 
 function App() {
   const [Option,SetOption] = useState(undefined)
-  const APP_URL = "http://172.31.33.25"
+  const APP_IP = "192.168.1.5"
   return (
     <>
       <Header
       Option={Option} 
       SetOption={SetOption}
+      APP_IP={APP_IP}
       />
       <main>
         {Option &&
           <iframe id="Option" title="Opcion Seleccionada"
-          src={`${APP_URL}:${Option}`}
+          src={Option}
           ></iframe>
         }
         <Hero />
@@ -23,6 +24,7 @@ function App() {
       <Footer
       Option={Option}
       SetOption={SetOption}
+      APP_IP={APP_IP}
       />
     </>
   )

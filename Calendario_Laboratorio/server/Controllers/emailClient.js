@@ -1,8 +1,9 @@
 import emailer from 'nodemailer';
+import dotenv from "dotenv"
 
+dotenv.config()
 async function Send_email(msg="",asunto="",user="",pass="",dest="",attachments=[]){
     const email_data ={
-        host: 'smtp-mail.outlook.com',
         user: user,
         password: pass,
         dest: dest,
@@ -10,16 +11,10 @@ async function Send_email(msg="",asunto="",user="",pass="",dest="",attachments=[
     
     
     let transporter = emailer.createTransport({
-        host: email_data.host,
-        secure: false,
-        port:'587',
-        tls:{
-            ciphers: "SSLv3",
-            rejectUnauthorized: false,
-        },
+        service:  process.env.SERVICE,
         auth:{
             user: email_data.user,
-            pass:email_data.password,
+            pass:email_data.password,   
         },
         debug:true,
         logger:true,

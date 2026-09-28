@@ -1,0 +1,19 @@
+.InfoPanelContainer{
+    padding: 10px;
+    border-radius: 10px;
+    width: 30vw;
+    z-index: 3;
+    box-shadow: 1px 1px 10px 1px var(--text);
+    animation: showup ease-in-out both 0.2s;
+}
+
+@keyframes showup {
+    0%{
+        scale: 0;
+        width: 0;
+    }
+    100%{
+        scale: 100%;
+        width: 30vw;
+    }
+}

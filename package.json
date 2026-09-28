@@ -1,0 +1,25 @@
+{
+  "name": "plataforma-lab-instru",
+  "version": "1.0.0",
+  "description": "Create the virtual environments\r  Calendar server\r  - EMAIL_PASSWORD\r  - PRIMARY_EMAIL_TO\r  - PRIMARY_EMAIL_FROM\r  - SECUNDARY_EMAIL_TO\r  Device Sever\r  - DATABASE_URL\r  - SERVER_PORT\r  - EMAIL_PASSWORD\r  - PRIMARY_EMAIL_TO\r  - PRIMARY_EMAIL_FROM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently -c \"cyan,magenta,yellow,blue,white\" \"npm run dev --prefix ./Plataforma-Lab-Redes-EPN/Plataforma_equipos_LRI/server\" \"npm run dev --prefix ./Calendario_Laboratorio/server\" \"npm run dev --prefix ./calendarv3\" \"npm run dev --prefix ./HomePage\" \"npm run dev --prefix ./Plataforma-Lab-Redes-EPN/Plataforma_equipos_LRI/app/app-LabRedes-project\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Masebav19/Plataforma-Lab-Instru.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Masebav19/Plataforma-Lab-Instru/issues"
+  },
+  "homepage": "https://github.com/Masebav19/Plataforma-Lab-Instru#readme",
+  "devDependencies": {
+    "concurrently": "^10.0.3"
+  }
+}

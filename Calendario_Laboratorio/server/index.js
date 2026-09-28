@@ -1,9 +1,15 @@
 import express from "express"
 import cors from "cors"
 import { router } from "./routes/calendar.js"
+import dotenv from "dotenv"
+
+dotenv.config()
 const server = express()
 
-server.use(cors())
+server.use(cors({
+    origin: process.env.APP_URL,
+    credentials: true
+}))
 server.use(express.json())
 
 server.use('/calendar', router)

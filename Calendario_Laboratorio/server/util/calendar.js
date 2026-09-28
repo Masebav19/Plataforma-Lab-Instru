@@ -13,6 +13,7 @@ export async function getDaysbyMonth({month, year}){
     const Client = new MySQLClient()
     const sessions = await Client.getSessionbymonth({year,month})
     const holidays = await Client.holadaybymonth({year,month})
+    const now = new Date()
     for (let i = 0; i < 5*7;i++){
         const thisInfo = new Date(firstdayofCalendar.getFullYear(),firstdayofCalendar.getMonth(),firstdayofCalendar.getDate()+i)
         const thisYear = thisInfo.getFullYear()
@@ -31,13 +32,14 @@ export async function getDaysbyMonth({month, year}){
             Day: ThisDay,
             Date: thisDate,
             sessions: ThisSession.length > 0 ? ThisSession : undefined,
-            feriados: ThisHoliday.length > 0 ? ThisHoliday : undefined
+            feriados: ThisHoliday.length > 0 ? ThisHoliday : undefined,
+            isToday: now.setHours(0,0,0,0) === thisInfo.setHours(0,0,0,0)
         })
     }
     return daysofmonth
 }
 
-export async function getDaysbyWeek({month, year, date}){
+export async function getDaysbyWeek({month, year, date, laboratorio}){
     const firstdayofweek = new Date(year,month-1,date)
     const datefirstday = firstdayofweek.getDay()
     let firstdayofCalendar = undefined
@@ -48,9 +50,12 @@ export async function getDaysbyWeek({month, year, date}){
     }
     const daysofweek = []
     const Client = new MySQLClient()
-    const sessions = [...(await Client.getSessionbymonth({year,month})),...(await Client.getSessionbymonth({year,month:(Number(month)+1).toString()}))]
-    const holidays = [...(await Client.holadaybymonth({year,month})),...(await Client.holadaybymonth({year,month:(Number(month)+1).toString()}))]
+    
+    const sessioDate = new Date(firstdayofCalendar.getFullYear(),firstdayofCalendar.getMonth(),firstdayofCalendar.getDate())
+    const sessions = await Client.getSeeesionbyWeek({year:sessioDate.getFullYear(),month:sessioDate.getMonth(),date:sessioDate.getDate(),laboratorio})
 
+    const holidays = [...(await Client.holadaybymonth({year,month})),...(await Client.holadaybymonth({year,month:(Number(month)+1).toString()}))]
+    const now = new Date()
     for (let i = 0; i < 7;i++){
         const thisInfo = new Date(firstdayofCalendar.getFullYear(),firstdayofCalendar.getMonth(),firstdayofCalendar.getDate()+i)
         const thisYear = thisInfo.getFullYear()
@@ -63,19 +68,21 @@ export async function getDaysbyWeek({month, year, date}){
         const ThisHoliday = holidays.filter((holiday) =>{
             return holiday.Year === thisYear && holiday.Month === thisMonth && holiday.Date === thisDate
         })
+        const isToday = now.setHours(0,0,0,0) === thisInfo.setHours(0,0,0,0)
         daysofweek.push({
             Year: thisYear,
             Month: thisMonth,
             Day: ThisDay,
             Date: thisDate,
             sessions: ThisSession.length > 0 ? ThisSession : undefined,
-            feriados: ThisHoliday.length > 0 ? ThisHoliday : undefined
+            feriados: ThisHoliday.length > 0 ? ThisHoliday : undefined,
+            isToday
         })
     }
     return daysofweek
 }
 
-export async function NewSession({Asunto, Hora_inicial, Hora_final, Periodicidad, Responsable, Correo_responsable, fecha_inicio, Mesas, Equipos_usados}){
+export async function NewSession({Asunto, Hora_inicial, Hora_final, Periodicidad, Responsable, Correo_responsable, fecha_inicio, Mesas, Equipos_usados,laboratorio}){
     const SessionDateInfo = new Date(fecha_inicio+'T01:00:00')
     const SessionYear = SessionDateInfo.getFullYear()
     const SessionMonth = SessionDateInfo.getMonth()
@@ -96,7 +103,8 @@ export async function NewSession({Asunto, Hora_inicial, Hora_final, Periodicidad
                     Month: ThisSession.getMonth(),
                     Date: ThisSession.getDate(),
                     Hora_inicial: Hora_inicial_Aux,
-                    Hora_final: Hora_final_Aux
+                    Hora_final: Hora_final_Aux,
+                    laboratorio
 
                 })
             }
@@ -113,7 +121,8 @@ export async function NewSession({Asunto, Hora_inicial, Hora_final, Periodicidad
                     Month: ThisSession.getMonth(),
                     Date: ThisSession.getDate(),
                     Hora_inicial: Hora_inicial_Aux,
-                    Hora_final: Hora_final_Aux
+                    Hora_final: Hora_final_Aux,
+                    laboratorio
                 })
             }
             const result = await Client.CreateMultpleSessions({sessions})
@@ -130,7 +139,7 @@ export async function NewSession({Asunto, Hora_inicial, Hora_final, Periodicidad
                     Hora_inicial: Hora_inicial_Aux,
                     Hora_final: Hora_final_Aux,
                     fecha_inicio, 
-                    Mesas
+                    Mesas,laboratorio
                 })
             }
             const result = await Client.CreateMultpleSessions({sessions})
@@ -144,7 +153,8 @@ export async function NewSession({Asunto, Hora_inicial, Hora_final, Periodicidad
                 Month: SessionMonth,
                 Date: SessionDate,
                 Hora_inicial: Hora_inicial_Aux,
-                Hora_final: Hora_final_Aux            
+                Hora_final: Hora_final_Aux,
+                laboratorio            
             })
             const result = await Client.CreateMultpleSessions({sessions})
             if(k === nTimes )return result
@@ -202,5 +212,16 @@ export async function ReadClosedTickets() {
 export async function GetImageTicket({id_ticket}){
     const Client = new MySQLClient()
     const result = await Client.GetImageTicket({id_ticket})
+    return result
+}
+
+export async function getActualSession({laboratorio}){
+    const Client = new MySQLClient()
+    const result = await Client.GetActualSession({laboratorio})
+    return result
+}
+export async function RegDeviceSession({IdSession, Device}){
+    const Client = new MySQLClient()
+    const result = await Client.RegDeviceSession({IdSession,Device})
     return result
 }

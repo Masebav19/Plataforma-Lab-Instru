@@ -1,43 +1,84 @@
-# version: "3.9"
-# services:
-#   labinstru:
-#     image: mysql
-#     ports:
-#       - "3306:3306"
-#     environment:
-#       - MYSQL_ROOT_PASSWORD=labinstru
-#   device_server:
-#     image: device_server:1
-#     ports:
-#       - "5000:5000"
-#     links:
-#       - labinstru
-#     depedens_on:
-#       device_server:
-#         condition: 
-#   calendar_server:
-#     image: calendar_server:1
-#     ports:
-#       - "4000:4000"
-#     links:
-#       - labinstru
-
 services:
-  appdevice:
-    image: appdevice:latest
+  minio:
+    image: minio/minio:latest
+    container_name: local-minio
     ports:
-      - "5173:5173"
-  apphome:
-    image: apphome:latest
+      - "9000:9000"   # Puerto para la API de S3
+      - "9001:9001"   # Puerto para el panel de administración web
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadminpassword
+    command: server /data --console-address ":9001"
+    networks:
+      - instru_network
+    volumes:
+      - minio_data:/data
+  testinstru:
+    image: mysql
+    container_name: testinstru
     ports:
-      - "5176:5176"
-
-  appticket:
-    image: appticket:latest
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: testinstru
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - instru_network
+  calendar_server:
+    image: calendar_server:latest
+    container_name: calendar_server
     ports:
-      - "5175:5175"
-
-  appcalendar:
-    image: appcalendar:latest
+      - "4000:4000"
+    environment:
+      SQL_URL: ""
+      EMAIL_PASSWORD: ""
+      PRIMARY_EMAIL_TO: ""
+      PRIMARY_EMAIL_FROM: ""
+      SECUNDARY_EMAIL_TO: ""
+      SERVICE: ""
+      MINIO_IP: "local-minio"
+      BUCKET_NAME: "testinstru"
+      JWT_SECRET: ""
+      APP_URL: "https://192.168.1.5:5174"
+      SERVER_DEVICE: "http://192.168.1.5:5000"
+    networks:
+      - instru_network
+  device_server:
+    image: device_server:latest
+    container_name: device_server
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: ""
+      VITE_SERVER_PORT: 5000
+      EMAIL_PASSWORD: ""
+      PRIMARY_EMAIL_TO: ""
+      PRIMARY_EMAIL_FROM: ""
+    networks:
+      - instru_network
+    depends_on:
+      - testinstru
+  calendar_app:
+    image: calendar_app
     ports:
       - "5174:5174"
+    networks:
+      - instru_network
+  home_app:
+    image: home_app
+    ports:
+      - "5176:5176"
+    networks:
+      - instru_network
+  device_app:
+    image: device_app
+    ports:
+      - "5173:5173"
+    networks:
+      - instru_network
+
+volumes:
+  minio_data:
+  mysql_data:
+networks:
+  instru_network:

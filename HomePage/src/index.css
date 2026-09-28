@@ -44,10 +44,9 @@ a {
 }
 
 #Option{
-  margin-top: 40px;
+  margin-top: 60px;
   height:900px;
   width:100%;
-  animation: ShowUp 0.8s both ease-in-out;
 }
 
 @keyframes ShowUp {

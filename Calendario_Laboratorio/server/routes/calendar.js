@@ -2,30 +2,24 @@ import { Router } from "express"
 import Calendar from "../Controllers/calendar.js"
 import multer from "multer"
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "./")
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + "-" + file.originalname)
-    }
-})
-const upload = multer({ storage })
+const upload = multer({ storage: multer.memoryStorage() })
 
 export const router = Router()
 
 
 router.get('/getDaysbyMonth/:month/:year', Calendar.getDaysbyMonth)
-router.get('/getDaysbyWeek/:month/:year/:date', Calendar.getDaysbyWeek)
+router.get('/getDaysbyWeek/:month/:year/:date/:laboratorio', Calendar.getDaysbyWeek)
 
 
 router.post('/LogIn',Calendar.LogIn)
+router.post('/Logout',Calendar.Logout)
 router.post('/SignUp', Calendar.SignUp)
 router.delete('/DeleteUser',Calendar.DeleteUser)
 
 router.post('/NewSession', Calendar.NewSession)
 router.delete('/DeleteSession', Calendar.DeleteSession)
 
+router.get('/regDevice/:Id/:laboratorio', Calendar.RegDevice)
 router.post('/OpenTicket', Calendar.OpenTicket)
 router.post('/CloseTicket',upload.single('image'), Calendar.CloseTicket)
 router.get('/GetNewTickets', Calendar.ReadNewTickets)

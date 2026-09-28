@@ -51,3 +51,6 @@ Content-Type: application/json
     "Modelo": "PLC Twido modelo TWDLCAA16RF",
     "Estado": "OK"
 }
+
+### Obtener todos los equipos
+GET http://localhost:5000/api/devices

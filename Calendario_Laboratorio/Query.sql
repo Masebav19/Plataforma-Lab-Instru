@@ -1,3 +1,4 @@
+-- Active: 1776560593667@@127.0.0.1@3306@deviceDB
 CREATE DATABASE instrucalendar;
 
 USE instrucalendar;
@@ -44,6 +45,7 @@ CREATE TABLE sesiones(
     fecha_inicio TEXT,
     Mesas TEXT,
     Equipos_usados TEXT,
+    laboratorio VARCHAR(100),
     PRIMARY KEY (Id)
 );
 
@@ -120,3 +122,8 @@ SELECT * FROM ticket INNER JOIN sesiones ON sesiones.`Id` = id_session WHERE fec
 SELECT image_path FROM ticket WHERE id_ticket = "00SvvP7kanzeayoWKdkNu";
 
 SELECT * FROM sesiones WHERE Asunto = "Reserva" AND Hora_inicial = "09:00" AND Year=2026 AND Month=1 AND Date=13;
+
+SELECT * FROM sesiones WHERE (laboratorio = 'sensores' OR laboratorio = 'instru') AND Year = 2026 AND Month = 8 AND Date BETWEEN 28 AND 31
+EXCEPT SELECT * FROM sesiones WHERE LOWER(Asunto) LIKE '%Reserva%';
+
+SELECT * FROM sesiones WHERE LOWER(Asunto) LIKE '%Reserva%'

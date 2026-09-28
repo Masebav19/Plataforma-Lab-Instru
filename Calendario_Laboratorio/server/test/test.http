@@ -2,23 +2,24 @@
 GET http://localhost:4000/calendar/getDaysbyMonth/10/2025
 
 ###
-GET http://172.31.33.28:4000/calendar/getDaysbyWeek/10/2025/8
+GET http://127.0.0.1:4000/calendar/getDaysbyWeek/9/2026/21/general
 
 ### stefany.villarreal@epn.edu.ec
 
-POST http://172.31.33.25:4000/calendar/NewSession
+POST http://192.168.1.5:4000/calendar/NewSession
 Content-Type: application/json
 
 {
-    "Asunto": "Mantenimiento de equipos",
-    "Hora_inicial": "12:00",
-    "Hora_final": "13:00",
+    "Asunto": "Laboratorio de instrumnetación industrial",
+    "Hora_inicial": "07:00",
+    "Hora_final": "09:00",
     "Periodicidad": "Semanalmente",
-    "Responsable": "Johnny Chuqui",
-    "Correo_responsable": "johnny.chuqui@epn.edu.ec",
-    "fecha_inicio": "2026-04-10",
-    "Mesas": "Mesa3",
-    "Equipos_usados": "Ninguno"
+    "Responsable": "Mateo Vásquez",
+    "Correo_responsable": "mateo.vasquez@epn.edu.ec",
+    "fecha_inicio": "2026-09-29",
+    "Mesas": "Mesa1,Mesa2,Mesa3",
+    "Equipos_usados": "Ninguno",
+    "laboratorio": "instru"
 }
 
 ### 
@@ -32,32 +33,32 @@ Content-Type: application/json
 }
 
 ###
-POST http://172.31.33.28:4000/calendar/SignUp
+POST http://127.0.0.1:4000/calendar/SignUp
 Content-Type: application/json
 
 {
-    "Nombre": "Mateo",
-    "Apellido": "Vásquez",
-    "Correo": "mateo.vasquez@epn.edu.ec",
+    "Nombre": "Alguien",
+    "Apellido": "Alguien",
+    "Correo": "alguien@epn.edu.ec",
     "Tipo": "Técnico docente",
     "Password": "labRedes"
 }
 
 ###
-POST http://172.31.33.28:4000/calendar/LogIn
+POST http://127.0.0.1:4000/calendar/LogIn
 Content-Type: application/json
 
 {
     "Correo": "mateo.vasquez@epn.edu.ec",
-    "Password": "password123"
+    "Password": "labRedes"
 }
 
 ###
-DELETE http://172.31.33.28:4000/calendar/DeleteUser
+DELETE http://127.0.0.1:4000/calendar/DeleteUser
 Content-Type: application/json
 
 {
-    "Correo": "margarita.jaramillo@epn.edu.ec",
+    "Correo": "alguien@epn.edu.ec",
     "Password": "labRedes"
 }
 
@@ -84,4 +85,7 @@ GET http://172.31.33.28:4000/calendar/GetNewTickets
 GET http://172.31.33.28:4000/calendar/GetClosedTickets
 
 ###
-GET http://172.31.33.28:4000/calendar/GetTicketImage/00SvvP7kanzeayoWKdkNu
+GET http://127.0.0.1:4000/calendar/GetTicketImage/9GdpOcJel5mpEYoY6z2Ik
+###
+GET http://127.0.0.1:4000/calendar/regDevice/1/general
+

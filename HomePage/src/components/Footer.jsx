@@ -1,7 +1,7 @@
 
 import './Footer.css'
 
-export default function Footer({SetOption}) {
+export default function Footer({SetOption,APP_IP}) {
   return (
     <footer className="footer">
       <div className="footer-inner">
@@ -24,14 +24,17 @@ export default function Footer({SetOption}) {
           {/* Links */}
           <div className="footer-column">
             <p className="footer-column-title">Enlaces</p>
-            <div className="footer-link" onClick={()=>SetOption(5173)}>
+            <div className="footer-link" onClick={()=>{
+              if(window.innerWidth > 900)SetOption(`http://${APP_IP}:5173`)
+              else window.open(`http://${APP_IP}:5173`)
+              }}>
               Prestamos de quipos
             </div>
-            <div className="footer-link" onClick={()=>SetOption(5174)}>
+            <div className="footer-link" onClick={()=>{
+              if(window.innerWidth > 900) SetOption(`https://${APP_IP}:5174`)
+              else window.open(`https://${APP_IP}:5174`)
+              }}>
               Calendario del laboratorio
-            </div>
-            <div className="footer-link" onClick={()=>SetOption(5175)}>
-              Tickets de sesiones
             </div>
             <a
               href="https://www.epn.edu.ec"

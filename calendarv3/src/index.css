@@ -1,0 +1,30 @@
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color-scheme: light;
+  --bg: #f0f5fa;
+  --surface: #fff;
+  --border: #d6e2ee;
+  --border-strong: #b9cce0;
+  --grid-line: #e6eef6;
+  --text: #15314b;
+  --text-soft: #4a6a89;
+  --text-muted: #7b95ad;
+  --accent: #1f6feb;
+  --accent-dark: #16518f;
+  --accent-soft: #e3eefb;
+  --now: #e0457b;
+  background-color: var(--bg);
+  width: 100vw;
+  color: var(--text);
+  
+}
+body{
+  margin:0;
+  padding: 0;
+}
+
+@media (max-width: 670px) {
+  body{
+    font-size: 11px;
+  }
+}
