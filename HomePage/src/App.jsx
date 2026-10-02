@@ -5,7 +5,7 @@ import Hero from "./components/Hero"
 
 function App() {
   const [Option,SetOption] = useState(undefined)
-  const APP_IP = "192.168.1.5"
+  const APP_IP = "172.29.72.183"
   return (
     <>
       <Header

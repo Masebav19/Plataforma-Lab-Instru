@@ -1,4 +1,4 @@
--- Active: 1776560593667@@127.0.0.1@3306@deviceDB
+-- Active: 1790603033420@@127.0.0.1@3306@instrucalendarlendar
 CREATE DATABASE instrucalendar;
 
 USE instrucalendar;
@@ -127,3 +127,5 @@ SELECT * FROM sesiones WHERE (laboratorio = 'sensores' OR laboratorio = 'instru'
 EXCEPT SELECT * FROM sesiones WHERE LOWER(Asunto) LIKE '%Reserva%';
 
 SELECT * FROM sesiones WHERE LOWER(Asunto) LIKE '%Reserva%'
+
+SELECT * FROM sesiones WHERE Equipos_usados NOT LIKE "Ninguno"

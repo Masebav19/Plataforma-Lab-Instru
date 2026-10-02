@@ -6,20 +6,20 @@ GET http://127.0.0.1:4000/calendar/getDaysbyWeek/9/2026/21/general
 
 ### stefany.villarreal@epn.edu.ec
 
-POST http://192.168.1.5:4000/calendar/NewSession
+POST http://172.29.72.183:4000/calendar/NewSession
 Content-Type: application/json
 
 {
-    "Asunto": "Laboratorio de instrumnetación industrial",
-    "Hora_inicial": "07:00",
+    "Asunto": "Laboratorio de Instrumentación Gr3S1",
+    "Hora_inicial": "08:00",
     "Hora_final": "09:00",
     "Periodicidad": "Semanalmente",
-    "Responsable": "Mateo Vásquez",
-    "Correo_responsable": "mateo.vasquez@epn.edu.ec",
-    "fecha_inicio": "2026-09-29",
+    "Responsable": "Alexis Copara",
+    "Correo_responsable": "alexis.copara@epn.edu.ec",
+    "fecha_inicio": "2026-09-30",
     "Mesas": "Mesa1,Mesa2,Mesa3",
     "Equipos_usados": "Ninguno",
-    "laboratorio": "instru"
+    "laboratorio": "sensores"
 }
 
 ### 
