@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 -- Active: 1790603982442@@172.29.72.183@3306@instrucalendar
+=======
+-- Active: 1790603033420@@127.0.0.1@3306@instrucalendarlendar
+>>>>>>> 00433a7e0ded35a1daa52a2b5f4dad6629d9c0fd
 CREATE DATABASE instrucalendar;
 
 USE instrucalendar;
@@ -128,6 +132,7 @@ EXCEPT SELECT * FROM sesiones WHERE LOWER(Asunto) LIKE '%Reserva%';
 
 SELECT * FROM sesiones WHERE LOWER(Asunto) LIKE '%Reserva%'
 
+<<<<<<< HEAD
 INSERT INTO `devicelist` (`Id`, `codigo`, `Tipo`, `Marca`, `Modelo`, `Especificaciones`, `Cantidad`) VALUES 
 (1, 'osciloscopio_1', 'Osciloscopio ', 'Tektronix', 'TDS1012', 'Osciloscopio 2 canales ', 1),
 (2, 'osciloscopio_2', 'Osciloscopio ', 'Tektronix', 'TDS1012', 'Osciloscopio 2 canales ', 1),
@@ -258,3 +263,6 @@ INSERT INTO `devicelist` (`Id`, `codigo`, `Tipo`, `Marca`, `Modelo`, `Especifica
 UPDATE sesiones SET `Mesas` = 'Mesa4,Mesa5,Mesa6' WHERE laboratorio = 'instru'
 
 SELECT * FROM sesiones WHERE `Equipos_usados` not LIKE 'Ninguno'
+=======
+SELECT * FROM sesiones WHERE Equipos_usados NOT LIKE "Ninguno"
+>>>>>>> 00433a7e0ded35a1daa52a2b5f4dad6629d9c0fd

@@ -1,6 +1,5 @@
 import { Send_email } from '../Controllers/emailClient.js'
 import  { emailSchema } from './messageSchema.js'
-import path from "path"
 import dotenv from 'dotenv'
 
 dotenv.config()

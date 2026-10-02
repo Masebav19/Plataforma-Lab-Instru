@@ -1,20 +1,21 @@
 services:
   minio:
-    image: minio/minio:latest
+    image: coollabsio/minio:latest
     container_name: local-minio
     ports:
       - "9000:9000"   # Puerto para la API de S3
       - "9001:9001"   # Puerto para el panel de administración web
     environment:
-      MINIO_ROOT_USER: minioadmin
-      MINIO_ROOT_PASSWORD: minioadminpassword
+      MINIO_ROOT_USER: labinstru
+      MINIO_ROOT_PASSWORD: labinstru2026
     command: server /data --console-address ":9001"
     networks:
       - instru_network
     volumes:
       - minio_data:/data
+    restart: always
   testinstru:
-    image: mysql
+    image: mysql:latest
     container_name: testinstru
     ports:
       - "3306:3306"
@@ -24,6 +25,7 @@ services:
       - mysql_data:/var/lib/mysql
     networks:
       - instru_network
+    restart: always
   calendar_server:
     image: calendar_server:latest
     container_name: calendar_server
@@ -36,13 +38,15 @@ services:
       PRIMARY_EMAIL_FROM: ""
       SECUNDARY_EMAIL_TO: ""
       SERVICE: ""
-      MINIO_IP: "local-minio"
-      BUCKET_NAME: "testinstru"
+      MINIO_IP: ""
+      BUCKET_NAME: ""
       JWT_SECRET: ""
-      APP_URL: "https://192.168.1.5:5174"
-      SERVER_DEVICE: "http://192.168.1.5:5000"
+      APP_URL: ""
+      SERVER_DEVICE: ""
+      TZ: America/Guayaquil
     networks:
       - instru_network
+    restart: always
   device_server:
     image: device_server:latest
     container_name: device_server
@@ -54,28 +58,34 @@ services:
       EMAIL_PASSWORD: ""
       PRIMARY_EMAIL_TO: ""
       PRIMARY_EMAIL_FROM: ""
+      SERVICE: ""
+      TZ: America/Guayaquil
     networks:
       - instru_network
     depends_on:
       - testinstru
+    restart: always
   calendar_app:
     image: calendar_app
     ports:
       - "5174:5174"
     networks:
       - instru_network
+    restart: always
   home_app:
     image: home_app
     ports:
       - "5176:5176"
     networks:
       - instru_network
+    restart: always
   device_app:
     image: device_app
     ports:
       - "5173:5173"
     networks:
       - instru_network
+    restart: always
 
 volumes:
   minio_data:

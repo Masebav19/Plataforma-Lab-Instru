@@ -12,7 +12,8 @@ export default async function readKeyboard() {
       return {error: 'No se ingresa ninguno valor'}
     }
     const [Id, clave] = parametro.split(';')
-    if (clave === "instru" || clave === "sensores" || clave === "general") return {Id: parseInt(Id,10),laboratorio: clave}
+    const laboratorio = clave.toLocaleLowerCase()
+    if (laboratorio === "instru" || laboratorio === "sensores" || laboratorio === "general") return {Id: parseInt(Id,10),laboratorio}
     if(Id==='c') return {finish: true}
     return {error: 'No Clave'}
     }catch{
