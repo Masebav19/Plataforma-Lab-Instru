@@ -1,0 +1,176 @@
+/* 
+  FROSTED METAL AESTHETIC
+  Strictly CSS: Gradients, precise edge lighting, machined shadows.
+  NO glass, NO blur, NO soft neumorphism.
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+.metal-card {
+  /* Dark Titanium Base */
+  background: linear-gradient(180deg, var(--border) 0%, var(--text-muted) 100%);
+  
+  /* Machined Edges */
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+  border-left: 1px solid rgba(0, 0, 0, 0.3);
+  border-right: 1px solid rgba(0, 0, 0, 0.3);
+  
+  /* Inner Chamfer & Crisp Shadow */
+  box-shadow: 
+    inset 0px 1px 0px rgba(255, 255, 255, 0.25),
+    inset 0px -1px 0px rgba(0, 0, 0, 0.3),
+    0px 4px 16px rgba(0, 0, 0, 0.4);
+    
+  border-radius: 6px;
+  width: 100%;
+  max-width: 420px;
+  font-family: 'Inter', -apple-system, sans-serif;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.metal-header {
+  background: linear-gradient(180deg, var(--border) 0%, var(--text-muted) 100%);
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.metal-title {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.metal-badge-green {
+  background: #26C281;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  box-shadow: 
+    inset 0px 1px 0px rgba(255, 255, 255, 0.3),
+    inset 0px -1px 0px rgba(0, 0, 0, 0.2),
+    0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.metal-image-container {
+  width: 100%;
+  height: 180px;
+  background: #1A1C20; /* Deep dark inset */
+  border-top: 1px solid rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+.metal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85; /* Dims the image slightly to match the cold industrial feel */
+  filter: grayscale(20%) contrast(110%);
+}
+
+.metal-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.metal-row {
+  display: flex;
+  gap: 12px;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+/* Inset panels to mimic stamped/milled recesses in the metal */
+.metal-section {
+  background: var(--border);
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  padding: 10px 12px;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.inset-deep {
+  background: var(--border);
+  box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.metal-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--text);
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.accent-blue {
+  color: var(--text);
+}
+
+.metal-value {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.metal-footer {
+  padding: 12px 16px;
+  background: linear-gradient(0deg, var(--border) 0%,var(--border) 70%, var(--text-muted) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Blue Anodized Button */
+.metal-button {
+  background: linear-gradient(0deg, var(--border) 0%,var(--border) 70%, var(--text-muted) 100%);
+  color: var(--text);
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 10px 18px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 
+    inset 0px 1px 0px rgba(255, 255, 255, 0.25),
+    inset 0px -1px 0px rgba(0, 0, 0, 0.2),
+    0px 2px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.1s ease-in-out;
+}
+
+.metal-button:active {
+  /* Reversed gradient and inverted shadows for physical "press" feeling */
+  background: linear-gradient(0deg, var(--border) 0%,var(--border) 70%, var(--text-muted) 100%);
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.4);
+  transform: translateY(1px);
+}
