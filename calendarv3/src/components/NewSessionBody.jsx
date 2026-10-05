@@ -27,7 +27,6 @@ export default function NewSessionBody({User,SessionInfo,VITE_SERVER_URL,PORT,Se
     const Hora_final = useRef(undefined)
     const fecha_inicio = useRef(undefined)
     const Periodicidad = useRef(undefined)
-    const Mesas = useRef(undefined)
 
     useEffect(()=>{
         fetch(`${VITE_SERVER_URL}:${VITE_DEVICE_SERVER_PORT}/api/prestamo`).then(result => result.json()).then(data =>{
@@ -53,7 +52,6 @@ export default function NewSessionBody({User,SessionInfo,VITE_SERVER_URL,PORT,Se
                 Responsable: Responsable.current.value,
                 Correo_responsable: CorreoResp.current.value,
                 fecha_inicio: fecha_inicio.current.value,
-                Mesas: Mesas.current.value,
                 laboratorio: LABORATORIO,
                 Equipos_usados: Asunto.current.value.toLowerCase().includes("reserva") && SelectedDevices.current.length > 0 ? SelectedDevices.current.map(
                     device=>{return `${device.Id},${device.codigo}`})
@@ -137,25 +135,7 @@ export default function NewSessionBody({User,SessionInfo,VITE_SERVER_URL,PORT,Se
                     <MenuItem value={"Anualmente"}>Anualmente</MenuItem>
                 </Select>
             </FormControl>
-            
-            <FormControl sx={{minWidth: "100%" }}>
-                <InputLabel id={`Mesa`}>Mesa</InputLabel>
-                <Select
-                aria-describedby={`helper-text`}
-                label="Mesa"
-                inputRef={Mesas}
-                >
-                    {LABORATORIO==="sensores"?<MenuItem value={"Mesa1"}>Mesa1</MenuItem>:<MenuItem value={"Mesa4"}>Mesa4</MenuItem>}
-                    {LABORATORIO==="sensores"?<MenuItem value={"Mesa2"}>Mesa2</MenuItem>:<MenuItem value={"Mesa5"}>Mesa5</MenuItem>}
-                    {LABORATORIO==="sensores"?<MenuItem value={"Mesa3"}>Mesa3</MenuItem>:<MenuItem value={"Mesa6"}>Mesa6</MenuItem>}
-                    {LABORATORIO==="sensores"?<MenuItem value={"Mesa1,Mesa2"}>Mesa1,Mesa2</MenuItem>:
-                    <MenuItem value={"Mesa4,Mesa5"}>Mesa4,Mesa5</MenuItem>}
-                    {LABORATORIO==="sensores"?<MenuItem value={"Mesa2,Mesa3"}>Mesa2,Mesa3</MenuItem>:
-                    <MenuItem value={"Mesa5,Mesa6"}>Mesa5,Mesa6</MenuItem>}
-                    {LABORATORIO==="sensores"?<MenuItem value={"Mesa1,Mesa2,Mesa3"}>Mesa1,Mesa2,Mesa3</MenuItem>:
-                    <MenuItem value={"Mesa4,Mesa5,Mesa6"}>Mesa4,Mesa5,Mesa6</MenuItem>}
-                </Select>
-            </FormControl>
+
             {devices&&
             <Box
             component={div}

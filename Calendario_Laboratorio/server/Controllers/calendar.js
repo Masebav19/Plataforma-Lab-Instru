@@ -25,9 +25,9 @@ export default class Calendar{
     static async NewSession(req,res){
         const validationResult = validateSessionData(req.body)
         if(validationResult.error) return res.json({error: JSON.parse(validationResult.error.message)}).status(400)
-        const { Asunto, Hora_inicial, Hora_final, Periodicidad, Responsable, Correo_responsable, fecha_inicio, Mesas,Equipos_usados,laboratorio } = validationResult.data
-        const result = await NewSession({Asunto, Hora_inicial, Hora_final, Periodicidad, Responsable, Correo_responsable, fecha_inicio, Mesas,Equipos_usados,laboratorio})
-        const data = {email: Correo_responsable, fecha_inicio, Responsable, Hora_inicial, Hora_final, Mesas, Equipos_usados}
+        const { Asunto, Hora_inicial, Hora_final, Periodicidad, Responsable, Correo_responsable, fecha_inicio,Equipos_usados,laboratorio } = validationResult.data
+        const result = await NewSession({Asunto, Hora_inicial, Hora_final, Periodicidad, Responsable, Correo_responsable, fecha_inicio,Equipos_usados,laboratorio})
+        const data = {email: Correo_responsable, fecha_inicio, Responsable, Hora_inicial, Hora_final, Equipos_usados}
         if (Asunto.toLocaleLowerCase().includes("reserva")) await SenEmail(data,Asunto)
         res.json({success: result})
     }
@@ -125,7 +125,6 @@ export default class Calendar{
                 Responsable: result.session_data.Responsable, 
                 Hora_inicial:  result.session_data.Hora_inicial, 
                 Hora_final: result.session_data.Hora_final, 
-                Mesas: result.session_data.Mesas, 
                 Equipos_usados: result.session_data.Equipos_usados,
                 observaciones,
                 imagePath,

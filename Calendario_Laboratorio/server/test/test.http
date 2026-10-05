@@ -10,7 +10,6 @@ POST http://172.29.72.183:4000/calendar/NewSession
 Content-Type: application/json
 
 {
-<<<<<<< HEAD
     "Asunto": "Laboratorio de Sensores y transductores GR4",
     "Hora_inicial": "09:00",
     "Hora_final": "11:00",
@@ -18,16 +17,6 @@ Content-Type: application/json
     "Responsable": "Michelle Viscaino",
     "Correo_responsable": "michelle.viscaino@epn.edu.ec",
     "fecha_inicio": "2026-10-02",
-=======
-    "Asunto": "Laboratorio de Instrumentación Gr3S1",
-    "Hora_inicial": "08:00",
-    "Hora_final": "09:00",
-    "Periodicidad": "Semanalmente",
-    "Responsable": "Alexis Copara",
-    "Correo_responsable": "alexis.copara@epn.edu.ec",
-    "fecha_inicio": "2026-09-30",
->>>>>>> 00433a7e0ded35a1daa52a2b5f4dad6629d9c0fd
-    "Mesas": "Mesa1,Mesa2,Mesa3",
     "Equipos_usados": "Ninguno",
     "laboratorio": "sensores"
 }

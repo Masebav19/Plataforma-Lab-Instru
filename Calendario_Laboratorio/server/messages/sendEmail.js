@@ -21,7 +21,6 @@ export async function SenEmail(data={},asunto=""){
         <p><strong>Responsable:</strong> ${data.Responsable}</p>
         <p><strong>Fecha de la reserva:</strong> ${data.fecha_inicio}</p>
         <p><strong>Horario:</strong> ${data.Hora_inicial}- ${data.Hora_final}</p>
-        <p><strong>Mesa a reservar:</strong> ${data.Mesas}</p>
 
         <div style="display:flex;justify-content:center;align-items:center">
         <table style="border-collapse:collapse;border:2px solid rgb(140 140 140);font-family: sans-serif;font-size:0.8rem;letter-spacing:1px">
@@ -71,7 +70,6 @@ export async function SenEmail(data={},asunto=""){
         <p><strong>Responsable:</strong> ${data.Responsable}</p>
         <p><strong>Fecha de la session:</strong> ${data.fecha_inicio}</p>
         <p><strong>Horario:</strong> ${data.Hora_inicial}- ${data.Hora_final}</p>
-        <p><strong>Mesa reservadas:</strong> ${data.Mesas}</p>
         <div style="display:flex;justify-content:center;align-items:center">
         <table style="border-collapse:collapse;border:2px solid rgb(140 140 140);font-family: sans-serif;font-size:0.8rem;letter-spacing:1px">
         <caption style="caption-side:bottom;padding:10px;font-weight:bold">

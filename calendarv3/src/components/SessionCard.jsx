@@ -29,15 +29,11 @@ export default function SessionCard({session, container,User,VITE_SERVER_URL,POR
         const m = height/(AVBHOURS.length+1)
         const CardHeight = m*(InitialHour-6)
         const CardWidth = m*(FinalHour-6)-CardHeight
-        sessionCard.current.style.top = `${session.Mesas.includes("Mesa1")||session.Mesas.includes("Mesa4")?CardHeight+ParentElementInfo.top:
-            session.Mesas.includes("Mesa2")||session.Mesas.includes("Mesa5")?CardHeight+ParentElementInfo.top+m/3:CardHeight+ParentElementInfo.top+2*m/3
-
-        }px` 
-        sessionCard.current.style.height = `${0.95*CardWidth*session.Mesas.split(",").length/3}px` 
+        sessionCard.current.style.top = `${CardHeight+ParentElementInfo.top}px` 
+        sessionCard.current.style.height = `${0.95*CardWidth}px` 
         const color = COLORSESSIONS[Math.round((COLORSESSIONS.length-1)*Math.random())]
         sessionCard.current.style.background = `${color}`
         sessionCard.current.style.boxShadow = `5px 1px 2px 1px${color}` 
-        sessionCard.current.style.gridTemplateRows  = `${session.Mesas.split(",").map(()=>{return "1fr"}).join(" ")}`
     },[])
 
     async function handleCloseDelete(){
@@ -90,31 +86,16 @@ export default function SessionCard({session, container,User,VITE_SERVER_URL,POR
         
         >
             {
-                Array.from({length:session.Mesas.split(",").length},(v,k)=>{return session.Mesas.split(",")[k]}).map((v,i)=>{
-                    if(session.Mesas.includes(v))
-                    return(
-                        <div style={{gridRow:`${i}/${i+1}`,display:"flex",flexDirection:"row",gap:window.innerWidth>670?"6px":"1px",border:"none"}} key={i}
-                        onClick={()=>{SetButtonOption(!ButtonOption)}}
-                        >
-                            <div style={{border:"none",
-                                background:session.Mesas.includes(v)?"var(--accent)":"var(--text-muted)",
-                                borderRadius:"50%",padding:"0.4vw",width:"10px",height:"10px",textAlign:"center",display:"flex",
-                                justifyContent:"center",alignItems:"center"                               
-                                }}>
-                                <small
-                                style={{fontSize:window.innerWidth<670?"2.5vw":"12px"}}
-                                >{`${v.at(v.length-1)}`}</small> 
-                            </div>
-                            <small
-                            style={{fontSize:window.innerWidth < 670?"10px":"12px"}}
-                            >{window.innerWidth>670?
-                            `${session.Responsable.split(" ")[0]} ${session.Responsable.split(" ")[1].at(0)}.`:
-                            `${session.Responsable.split(" ")[0].at(0)}${session.Responsable.split(" ")[1].at(0)}`
-                            }</small>
-                        </div>
-                    )
-                    else return(<></>)
-                })
+                <div style={{gridRow:`${i}/${i+1}`,display:"flex",flexDirection:"row",gap:window.innerWidth>670?"6px":"1px",border:"none"}} key={i}
+                onClick={()=>{SetButtonOption(!ButtonOption)}}
+                >
+                    <small
+                    style={{fontSize:window.innerWidth < 670?"10px":"12px"}}
+                    >{window.innerWidth>670?
+                    `${session.Responsable.split(" ")[0]} ${session.Responsable.split(" ")[1].at(0)}.`:
+                    `${session.Responsable.split(" ")[0].at(0)}${session.Responsable.split(" ")[1].at(0)}`
+                    }</small>
+                </div>
             }
             {infoPanel && <InfoSessionCard
             session={session}

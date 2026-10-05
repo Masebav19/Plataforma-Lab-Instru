@@ -86,8 +86,8 @@ export default class MySQLClient{
         const con = await this.Client.createConnection(SQL_URL)
         await con.connect()
         await con.query("USE instrucalendar")
-        const result = await con.query(`INSERT INTO sesiones (Asunto, Hora_inicial, Hora_final, Periodicidad, Responsable, Correo_responsable, Year, Month, Date, fecha_inicio, Mesas, Equipos_usados,laboratorio) VALUES ${sessions.map(session =>{
-            return `('${session.Asunto}','${session.Hora_inicial}','${session.Hora_final}','${session.Periodicidad}','${session.Responsable}','${session.Correo_responsable}',${session.Year},${session.Month},${session.Date},'${session.fecha_inicio}','${session.Mesas}','${session.Equipos_usados}','${session.laboratorio}')`
+        const result = await con.query(`INSERT INTO sesiones (Asunto, Hora_inicial, Hora_final, Periodicidad, Responsable, Correo_responsable, Year, Month, Date, fecha_inicio, Equipos_usados,laboratorio) VALUES ${sessions.map(session =>{
+            return `('${session.Asunto}','${session.Hora_inicial}','${session.Hora_final}','${session.Periodicidad}','${session.Responsable}','${session.Correo_responsable}',${session.Year},${session.Month},${session.Date},'${session.fecha_inicio}','${session.Equipos_usados}','${session.laboratorio}')`
         }).join(",")}`)
         con.end()
         return result[0] ? true : false

@@ -8,7 +8,6 @@ const SessionSchema = z.object({
     Responsable: z.string(),
     Correo_responsable: z.string().endsWith('@epn.edu.ec',{message: "Debe ser un correo institucional"}),
     fecha_inicio: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, {message: "Colocar en el formato correcto"}),
-    Mesas: z.string({required_error: "Debe contener las mesas a usar"}),
     Equipos_usados: z.string({required_error:"Debe contener los quipos a usar"}),
     laboratorio: z.enum(["sensores","instru","general"],{error:"Seleccionar el laboratorio"})
 })

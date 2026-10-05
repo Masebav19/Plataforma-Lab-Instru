@@ -15,7 +15,6 @@ export default function InfoSessionCard({session,sessionCard,color}){
             <span>{session.Asunto}</span><br />
             <span>{session.Responsable}</span><br />
             <span>{`${session.Hora_inicial} - ${session.Hora_final}`}</span><br />
-            <span><strong>Mesas: </strong>{session.Mesas}</span><br />
             <span>{session.Periodicidad === "Semanalmente"?`Cada ${DAYSNAMES[(new Date(session.Year,session.Month,session.Date).getDay())]}`:""}</span>
         </div>
     )

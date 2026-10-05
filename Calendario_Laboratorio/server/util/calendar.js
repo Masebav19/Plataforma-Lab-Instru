@@ -82,7 +82,7 @@ export async function getDaysbyWeek({month, year, date, laboratorio}){
     return daysofweek
 }
 
-export async function NewSession({Asunto, Hora_inicial, Hora_final, Periodicidad, Responsable, Correo_responsable, fecha_inicio, Mesas, Equipos_usados,laboratorio}){
+export async function NewSession({Asunto, Hora_inicial, Hora_final, Periodicidad, Responsable, Correo_responsable, fecha_inicio, Equipos_usados,laboratorio}){
     const SessionDateInfo = new Date(fecha_inicio+'T01:00:00')
     const SessionYear = SessionDateInfo.getFullYear()
     const SessionMonth = SessionDateInfo.getMonth()
@@ -98,7 +98,7 @@ export async function NewSession({Asunto, Hora_inicial, Hora_final, Periodicidad
                 const ThisSession = new Date(SessionYear,SessionMonth,SessionDate+(i*7))
                 sessions.push({
                     Asunto, Periodicidad, Responsable, Correo_responsable,
-                    fecha_inicio, Mesas,Equipos_usados,
+                    fecha_inicio,Equipos_usados,
                     Year: ThisSession.getFullYear(),
                     Month: ThisSession.getMonth(),
                     Date: ThisSession.getDate(),
@@ -116,7 +116,7 @@ export async function NewSession({Asunto, Hora_inicial, Hora_final, Periodicidad
                 const ThisSession = new Date(SessionYear,SessionMonth+i,SessionDate)
                 sessions.push({
                     Asunto, Periodicidad, Responsable, Correo_responsable,
-                    fecha_inicio, Mesas,Equipos_usados,
+                    fecha_inicio,Equipos_usados,
                     Year: ThisSession.getFullYear(),
                     Month: ThisSession.getMonth(),
                     Date: ThisSession.getDate(),
@@ -139,7 +139,7 @@ export async function NewSession({Asunto, Hora_inicial, Hora_final, Periodicidad
                     Hora_inicial: Hora_inicial_Aux,
                     Hora_final: Hora_final_Aux,
                     fecha_inicio, 
-                    Mesas,laboratorio
+                    laboratorio
                 })
             }
             const result = await Client.CreateMultpleSessions({sessions})
@@ -148,7 +148,7 @@ export async function NewSession({Asunto, Hora_inicial, Hora_final, Periodicidad
             const sessions = []
             sessions.push({
                 Asunto, Periodicidad, Responsable, Correo_responsable,Equipos_usados,
-                fecha_inicio, Mesas,
+                fecha_inicio,
                 Year: SessionYear,
                 Month: SessionMonth,
                 Date: SessionDate,

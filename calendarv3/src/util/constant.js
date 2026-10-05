@@ -14,6 +14,5 @@ export const AVBHOURS = ["7AM","8AM","9AM",
 export const VITE_SERVER_URL = "http://172.29.72.183"
 export const PORT = 4000
 export const LABORATORIOS = [
-    {value: "sensores",text:"Sensores"},
-    {value: "instru", text: "Instrumentación"},
+    {value: "redes",text:"Redes"}
 ]
