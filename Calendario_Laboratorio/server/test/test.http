@@ -10,13 +10,13 @@ POST http://172.29.72.183:4000/calendar/NewSession
 Content-Type: application/json
 
 {
-    "Asunto": "Laboratorio de Instrumentación Gr3S1",
-    "Hora_inicial": "08:00",
-    "Hora_final": "09:00",
+    "Asunto": "Laboratorio de instrumentación Gr3S2",
+    "Hora_inicial": "11:00",
+    "Hora_final": "12:00",
     "Periodicidad": "Semanalmente",
-    "Responsable": "Alexis Copara",
-    "Correo_responsable": "alexis.copara@epn.edu.ec",
-    "fecha_inicio": "2026-09-30",
+    "Responsable": "Alex Oña",
+    "Correo_responsable": "alex.ona@epn.edu.ec",
+    "fecha_inicio": "2026-10-02",
     "Mesas": "Mesa1,Mesa2,Mesa3",
     "Equipos_usados": "Ninguno",
     "laboratorio": "sensores"

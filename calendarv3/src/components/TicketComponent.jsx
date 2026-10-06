@@ -99,7 +99,7 @@ export default function TicketComponent({ticket,SetTicket,VITE_SERVER_URL,PORT})
                 audio={false}
                 ref={webCamRef}
                 screenshotFormat="image/jpeg"
-                videoConstraints = {{facingMode:"enviroment"}}
+                videoConstraints = {{facingMode:"environment"}}
                 width={"100%"}
                 />
                 <IconButton
