@@ -8,7 +8,7 @@ export async function SenEmail(data={},asunto=""){
     DataEmailToSend.To = DataEmailToSend.To.concat(';',data.email)    
     if (asunto.includes("Reserva")){
         DataEmailToSend.To = DataEmailToSend.To.concat(';',process.env.SECUNDARY_EMAIL_TO) 
-        DataEmailToSend.asunto = `Solicitud de reserva del Laboratorio de instrumentación industrial`
+        DataEmailToSend.asunto = `Solicitud de reserva del Laboratorio de Redes Industriales`
         const response = await fetch(`${process.env.SERVER_DEVICE}/api/devices`)
         const allDevices = await response.json()
         const devices = data.Equipos_usados.split(";").map((infoDevice,index) =>{

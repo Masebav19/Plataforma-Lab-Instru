@@ -5,7 +5,7 @@ export default function Hero() {
     <section className="hero">
       <img
         src="../src/assets/hero-lab.webp"
-        alt="Vista panoramica del Laboratorio de Instrumentacion Industrial de la EPN"
+        alt="Vista panoramica del Laboratorio de Redes Industriales de la EPN"
         className="hero-image"
       />
       <div className="hero-overlay" />
@@ -15,7 +15,7 @@ export default function Hero() {
           Facultad de Ingenieria Electrica y Electronica
         </div>
         <h1 className="hero-title">
-          Laboratorio de Instrumentacion Industrial
+          Laboratorio de Redes Industriales
         </h1>
         <p className="hero-description">
           Formacion practica en medicion, control y automatizacion de procesos

@@ -8,7 +8,7 @@ export default function Header({Option,SetOption,APP_IP}) {
         <div className="logo-area">
           {window.innerWidth > 670 && <div className="logo-icon">LII</div>}
           <div className="logo-text">
-            <span className="logo-title">Laboratorio de Instrumentacion</span>
+            <span className="logo-title">Laboratorio de Redes Industriales</span>
             <span className="logo-subtitle">Escuela Politecnica Nacional</span>
           </div>
         </div>

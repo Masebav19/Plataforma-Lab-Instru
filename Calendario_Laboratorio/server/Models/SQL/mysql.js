@@ -43,7 +43,7 @@ export default class MySQLClient{
                 if(response[0].length > 0) return response[0]
                 return []
             }else{
-                const response = await con.query("SELECT * FROM sesiones WHERE (laboratorio = 'sensores' OR laboratorio = 'instru') AND Year = ? AND Month = ? AND Date BETWEEN ? AND ? AND LOWER(Asunto) NOT LIKE '%Reserva%'",
+                const response = await con.query("SELECT * FROM sesiones WHERE laboratorio = 'redes' AND Year = ? AND Month = ? AND Date BETWEEN ? AND ? AND LOWER(Asunto) NOT LIKE '%Reserva%'",
                     [year,month,date,date+7]
                 )
                 if(response[0].length > 0) return response[0]
@@ -60,10 +60,10 @@ export default class MySQLClient{
                 if(response2[0].length > 0 && response[0].length > 0) return [...response[0],...response2[0]]
                 return []
             }else{
-                const response = await con.query("SELECT * FROM sesiones WHERE (laboratorio = 'sensores' OR laboratorio = 'instru') AND Year = ? AND Month = ? AND Date BETWEEN ? AND ? AND LOWER(Asunto) NOT LIKE '%Reserva%'",
+                const response = await con.query("SELECT * FROM sesiones WHERE laboratorio = 'redes' AND Year = ? AND Month = ? AND Date BETWEEN ? AND ? AND LOWER(Asunto) NOT LIKE '%Reserva%'",
                     [year,month,date,31]
                 )
-                const response2 = await con.query("SELECT * FROM sesiones WHERE (laboratorio = 'sensores' OR laboratorio = 'instru') AND Year = ? AND Month = ? AND Date BETWEEN ? AND ? AND LOWER(Asunto) NOT LIKE '%Reserva%'",
+                const response2 = await con.query("SELECT * FROM sesiones WHERE laboratorio = 'redes' AND Year = ? AND Month = ? AND Date BETWEEN ? AND ? AND LOWER(Asunto) NOT LIKE '%Reserva%'",
                     [year,month+1,1,LastDayWeek.getDate()]
                 )
                 if(response2[0].length > 0 && response[0].length > 0) return [...response[0],...response2[0]]

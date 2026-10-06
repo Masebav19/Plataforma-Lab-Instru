@@ -1,8 +1,5 @@
-<<<<<<< HEAD
--- Active: 1790603982442@@172.29.72.183@3306@instrucalendar
-=======
--- Active: 1790603033420@@127.0.0.1@3306@instrucalendarlendar
->>>>>>> 00433a7e0ded35a1daa52a2b5f4dad6629d9c0fd
+
+
 CREATE DATABASE instrucalendar;
 
 USE instrucalendar;
@@ -81,42 +78,47 @@ CREATE TABLE lab_logs_sessions(
 
 
 insert into feriados(Year, Month, Date, Nombre, Tipo) VALUES
-(2025,0,1,"Año Nuevo","Feriado"),
-(2025,2,3,"Carnaval","Feriado"),
-(2025,2,4,"Carnaval","Feriado"),
-(2025,3,18,"Viernes Santo","Feriado"),
-(2025,4,1,"Dia del Trabajo","Feriado"),
-(2025,4,2,"Día del trabajo","Feriado"),
-(2025,7,10,"Primer Grito de independencia","Feriado"),
-(2025,7,11,"Primer Grito de independencia","Feriado"),
-(2025,9,10,"Independencia de Guayaquil","Feriado"),
-(2025,10,4,"Día de los difuntos","Feriado"),
-(2025,11,24,"Receso de Navidad","Feriado"),
-(2025,11,25,"Receso de Navidad","Feriado"),
-(2025,11,26,"Receso de Navidad","Feriado"),
-(2025,11,27,"Receso de Navidad","Feriado"),
-(2025,11,28,"Receso de Navidad","Feriado"),
-(2025,11,29,"Receso de Navidad","Feriado"),
-(2025,11,30,"Receso de Navidad","Feriado"),
-(2025,11,31,"Receso de Navidad","Feriado"),
-(2026,0,1,"Receso de Navidad","Feriado"),
-(2026,0,2,"Receso de Navidad","Feriado"),
-(2026,1,16,"Carnaval","Feriado"),
-(2026,1,17,"Carnaval","Feriado"),
-(2026,3,3,"Viernes Santo","Feriado"),
-(2026,4,1,"Día del trabajo","Feriado"),
-(2026,3,30,"Día del trabajo","Feriado"),
-(2026,4,25,"Batalla de Pichincha","Feriado"),
-(2026,7,10,"Primer grito de independencia","Feriado"),
-(2025,10,3,"Independencia de Cuenca","Feriado"),
-(2025,10,12,"Jornadas FIEE","Feriado"),
-(2025,10,13,"Jornadas FIEE","Feriado"),
-(2025,10,14,"Jornadas FIEE","Feriado"),
-(2025,11,1,"Integración Politécnica","Feriado"),
-(2025,11,2,"Integración Politécnica","Feriado"),
-(2025,11,3,"Integración Politécnica","Feriado"),
-(2025,11,4,"Integración Politécnica","Feriado"),
-(2025,11,5,"Fiestas de Quito","Feriado")
+(2026, 0, 1, "Año Nuevo", "Feriado"),
+(2026, 0, 2, "Día puente Año Nuevo", "Feriado"),
+(2026, 1, 16, "Carnaval", "Feriado"),
+(2026, 1, 17, "Carnaval", "Feriado"),
+(2026, 3, 3, "Viernes Santo", "Feriado"),
+(2026, 4, 1, "Día del Trabajo", "Feriado"),
+(2026, 4, 25, "Batalla de Pichincha (Traslado al Lunes)", "Feriado"),
+(2026, 7, 10, "Primer Grito de la Independencia", "Feriado"),
+(2026, 9, 12, "Semana de integración Politécnica", "Feriado"),
+(2026, 9, 13, "Semana de integración Politécnica", "Feriado"),
+(2026, 9, 14, "Semana de integración Politécnica", "Feriado"),
+(2026, 9, 15, "Semana de integración Politécnica", "Feriado"),
+(2026, 9, 16, "Semana de integración Politécnica", "Feriado"),
+(2026, 9, 9, "Independencia de Guayaquil", "Feriado"),
+(2026, 10, 2, "Día de los Difuntos", "Feriado"),
+(2026, 10, 3, "Independencia de Cuenca", "Feriado"),
+(2026, 10, 20, "Festival de Artes Vivas de Loja (Decreto)", "Feriado"),
+(2026, 11, 24, "Receso Navidad", "Feriado"),
+(2026, 11, 25, "Receso Navidad", "Feriado"),
+(2026, 11, 26, "Receso Navidad", "Feriado"),
+(2026, 11, 27, "Receso Navidad", "Feriado"),
+(2026, 11, 28, "Receso Navidad", "Feriado"),
+(2026, 11, 29, "Receso Navidad", "Feriado"),
+(2026, 11, 30, "Receso Navidad", "Feriado"),
+(2026, 11, 31, "Receso Navidad", "Feriado"),
+(2027, 0, 1, "Receso Navidad", "Feriado"),
+(2027, 1, 8, "Carnaval", "Feriado"),
+(2027, 1, 9, "Carnaval", "Feriado"),
+(2027, 2, 26, "Viernes Santo", "Feriado"),
+(2027, 4, 1, "Día del Trabajo", "Feriado"),
+(2027, 4, 24, "Batalla de Pichincha", "Feriado"),
+(2027, 7, 13, "Primer Grito de la Independencia", "Feriado"),
+(2027, 9, 11, "Independencia de Guayaquil", "Feriado"),
+(2027, 10, 2, "Día de los Difuntos", "Feriado"),
+(2027, 11, 3, "Independencia de Cuenca", "Feriado"),
+(2027, 11, 25, "Navidad", "Feriado"),
+(2026, 9, 26, "Jornadas FIEE", "Feriado"),
+(2026, 9, 27, "Jornadas FIEE", "Feriado"),
+(2026, 9, 28, "Jornadas FIEE", "Feriado"),
+(2026, 9, 29, "Jornadas FIEE", "Feriado"),
+(2026, 9, 30, "Jornadas FIEE", "Feriado")
 
 
 SELECT * FROM ticket INNER JOIN sesiones ON sesiones.`Id` = id_session WHERE fecha_cierre IS NULL;
@@ -126,7 +128,7 @@ SELECT image_path FROM ticket WHERE id_ticket = "00SvvP7kanzeayoWKdkNu";
 
 SELECT * FROM sesiones WHERE Asunto = "Reserva" AND Hora_inicial = "09:00" AND Year=2026 AND Month=1 AND Date=13;
 
-SELECT * FROM sesiones WHERE (laboratorio = 'sensores' OR laboratorio = 'instru') AND Year = 2026 AND Month = 8 AND Date BETWEEN 28 AND 31
+SELECT * FROM sesiones WHERE laboratorio = 'redes' AND Year = 2026 AND Month = 8 AND Date BETWEEN 28 AND 31
 EXCEPT SELECT * FROM sesiones WHERE LOWER(Asunto) LIKE '%Reserva%';
 
 SELECT * FROM sesiones WHERE LOWER(Asunto) LIKE '%Reserva%'

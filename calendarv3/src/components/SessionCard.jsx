@@ -12,7 +12,35 @@ import DialogTitle from '@mui/material/DialogTitle';
 import RequestsManager from "../util/RequetsManager.js";
 import TicketComponent from "./TicketComponent.jsx";
 
-const COLORSESSIONS =["#1E6EE3","#5055B8","#8A499B","#B33D7F","#D04273","#4F64CE","#7F5AB2","#AF4F96","#E0457B"]
+const COLORSESSIONS = [
+  // --- Azules / Azules Eléctricos ---
+  "#1E6EE3", // Original 1
+  "#3353D9", // NUEVO: Azul intermedio profundo
+  "#4F64CE", // Original 6
+  "#3B46A8", // NUEVO: Azul marino vibrante
+  "#5055B8", // Original 2
+
+  // --- Violetas / Índigos ---
+  "#6855C0", // NUEVO: Violeta azulado
+  "#7F5AB2", // Original 7
+  "#8A499B", // Original 3
+
+  // --- Púrpuras / Orquídea ---
+  "#9D449A", // NUEVO: Púrpura medio
+  "#AF4F96", // Original 8
+  "#B33D7F", // Original 4
+
+  // --- Magentas / Rosas Oscuros / Berries ---
+  "#C23D79", // NUEVO: Magenta equilibrado
+  "#D04273", // Original 5
+  "#D84377", // NUEVO: Rosa intenso profundo
+  "#E0457B", // Original 9
+  
+  // --- Extensiones de la paleta (Nuevos tonos ciruela y azul oscuro para variedad) ---
+  "#1A55B3", // NUEVO: Azul zafiro (más oscuro para contraste)
+  "#723B8F", // NUEVO: Ciruela profundo
+  "#B0305E"  // NUEVO: Carmesí/Frambuesa quemado
+];
 
 export default function SessionCard({session, container,User,VITE_SERVER_URL,PORT,openDeleteDialog, SetOpenDeleteDialog}){
     const [infoPanel, SetInfoPanel] = useState(false)
@@ -85,58 +113,61 @@ export default function SessionCard({session, container,User,VITE_SERVER_URL,POR
         onMouseLeave={()=>SetInfoPanel(false)}
         
         >
-            {
-                <div style={{gridRow:`${i}/${i+1}`,display:"flex",flexDirection:"row",gap:window.innerWidth>670?"6px":"1px",border:"none"}} key={i}
-                onClick={()=>{SetButtonOption(!ButtonOption)}}
+            
+        <div style={{display:"flex",flexDirection:"column",gap:window.innerWidth>670?"6px":"1px",border:"none"}}
+        onClick={()=>{SetButtonOption(!ButtonOption)}}
+        >
+            {window.innerWidth>670 && <p>{session.Asunto}</p>}
+            <small
+            style={{fontSize:window.innerWidth < 670?"10px":"14px"}}
+            >{window.innerWidth>670?
+            `${session.Responsable.split(" ")[0]} ${session.Responsable.split(" ")[1]}.`:
+            `${session.Responsable.split(" ")[0].at(0)}${session.Responsable.split(" ")[1].at(0)}`
+            }</small>
+            
+            
+        </div>
+            
+        {infoPanel && <InfoSessionCard
+        session={session}
+        sessionCard={sessionCard.current}
+        color={sessionCard.current.style.background}
+        />}
+        {ButtonOption && User?.User.correo === session.Correo_responsable &&
+            <Box
+            component="div"
+            sx={{position:"absolute",transform:window.innerWidth>670?"translateX(-3.5vw)":"translateX(-10vw)",
+                width:window.innerWidth>670?"3vw":"9vw",border:"solid 1px var(--text-soft)", background:"var(--grid-line)"}}
+            >
+                <IconButton onClick={handleOpenTicket}>
+                    <AppRegistrationIcon
+                    color="info"
+                    />
+                </IconButton>
+                <IconButton onClick={()=> SetOpenDeleteDialog(true)}>
+                    <DeleteForeverIcon
+                    color="info"/>
+                </IconButton>
+                <Dialog
+                open={openDeleteDialog}
+                onClose={handleCloseDelete}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                role="alertdialog"
                 >
-                    <small
-                    style={{fontSize:window.innerWidth < 670?"10px":"12px"}}
-                    >{window.innerWidth>670?
-                    `${session.Responsable.split(" ")[0]} ${session.Responsable.split(" ")[1].at(0)}.`:
-                    `${session.Responsable.split(" ")[0].at(0)}${session.Responsable.split(" ")[1].at(0)}`
-                    }</small>
-                </div>
-            }
-            {infoPanel && <InfoSessionCard
-            session={session}
-            sessionCard={sessionCard.current}
-            color={sessionCard.current.style.background}
-            />}
-            {ButtonOption && User?.User.correo === session.Correo_responsable &&
-                <Box
-                component="div"
-                sx={{position:"absolute",transform:window.innerWidth>670?"translateX(-3.5vw)":"translateX(-10vw)",
-                    width:window.innerWidth>670?"3vw":"9vw",border:"solid 1px var(--text-soft)", background:"var(--grid-line)"}}
-                >
-                    <IconButton onClick={handleOpenTicket}>
-                        <AppRegistrationIcon
-                        color="info"
-                        />
-                    </IconButton>
-                    <IconButton onClick={()=> SetOpenDeleteDialog(true)}>
-                        <DeleteForeverIcon
-                        color="info"/>
-                    </IconButton>
-                    <Dialog
-                    open={openDeleteDialog}
-                    onClose={handleCloseDelete}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                    role="alertdialog"
+                    <DialogTitle
+                    id="Delete-session-dialog"
                     >
-                        <DialogTitle
-                        id="Delete-session-dialog"
-                        >
-                         {"¿Desea elminiar la sesión o el grupo de sesiones?"}   
-                        </DialogTitle>
-                        <DialogActions>
-                            <Button onClick={handleCloseDelete} autoFocus>
-                                Cancelar
-                            </Button>
-                            <Button onClick={handleDeleteSession}>De Acuerdo</Button>
-                        </DialogActions>
-                    </Dialog>
-                </Box>
+                        {"¿Desea elminiar la sesión o el grupo de sesiones?"}   
+                    </DialogTitle>
+                    <DialogActions>
+                        <Button onClick={handleCloseDelete} autoFocus>
+                            Cancelar
+                        </Button>
+                        <Button onClick={handleDeleteSession}>De Acuerdo</Button>
+                    </DialogActions>
+                </Dialog>
+            </Box>
             }
             {ticket && 
                 <TicketComponent

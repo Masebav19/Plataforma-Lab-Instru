@@ -11,11 +11,11 @@ export default function Footer({SetOption,APP_IP}) {
             <div className="footer-logo-area">
               <div className="footer-logo-icon">LII</div>
               <span className="footer-logo-text">
-                Lab. Instrumentacion Industrial
+                Lab. Redes Industriales
               </span>
             </div>
             <p className="footer-desc">
-              Laboratorio de Instrumentacion Industrial de la Facultad de
+              Laboratorio de Redes Industriales de la Facultad de
               Ingenieria Electrica y Electronica, Escuela Politecnica Nacional,
               Quito - Ecuador.
             </p>
@@ -56,7 +56,7 @@ export default function Footer({SetOption,APP_IP}) {
                   Dra. Silvana Gamboa
                 </span>
                 <span className="coordinator-role">
-                  Coordinadora del Laboratorio de Instrumentacion Industrial
+                  Coordinadora del Laboratorio de Redes Industriales
                 </span>
                 <a
                   href="mailto:silvana.gamboa@epn.edu.ec"

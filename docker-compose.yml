@@ -6,25 +6,25 @@ services:
       - "9000:9000"   # Puerto para la API de S3
       - "9001:9001"   # Puerto para el panel de administración web
     environment:
-      MINIO_ROOT_USER: labinstru
-      MINIO_ROOT_PASSWORD: labinstru2026
+      MINIO_ROOT_USER: labredes
+      MINIO_ROOT_PASSWORD: labredes2026
     command: server /data --console-address ":9001"
     networks:
-      - instru_network
+      - redes_network
     volumes:
       - minio_data:/data
     restart: always
-  testinstru:
+  redesDB:
     image: mysql:latest
-    container_name: testinstru
+    container_name: redesdb
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: testinstru
+      MYSQL_ROOT_PASSWORD: redesdb
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
-      - instru_network
+      - redes_network
     restart: always
   calendar_server:
     image: calendar_server:latest
@@ -32,20 +32,20 @@ services:
     ports:
       - "4000:4000"
     environment:
-      SQL_URL: ""
-      EMAIL_PASSWORD: ""
-      PRIMARY_EMAIL_TO: ""
-      PRIMARY_EMAIL_FROM: ""
-      SECUNDARY_EMAIL_TO: ""
-      SERVICE: ""
-      MINIO_IP: ""
-      BUCKET_NAME: ""
-      JWT_SECRET: ""
-      APP_URL: ""
-      SERVER_DEVICE: ""
+      SQL_URL: "mysql://root:redesdb@172.31.36.74:3306"
+      EMAIL_PASSWORD: "vusi gvow bzed jvqh"
+      PRIMARY_EMAIL_TO: "mateo.vasquez@epn.edu.ec"
+      PRIMARY_EMAIL_FROM: "lab.instrumentacion.epn@gmail.com"
+      SECUNDARY_EMAIL_TO: "silvana.gamboa@epn.edu.ec"
+      SERVICE: "gmail"
+      MINIO_IP: "local-minio"
+      BUCKET_NAME: "redes"
+      JWT_SECRET: "DNSf9e19pIGzhZNaRshMysCBiIfYXerBsUb0bnah4U+P5Nnc1zD86tTw2wYRQ0HZ/lekkmurHpxiGzhXhQ2PQg=="
+      APP_URL: "https://172.31.36.74:5174"
+      SERVER_DEVICE: "http://172.31.36.74:5000"
       TZ: America/Guayaquil
     networks:
-      - instru_network
+      - redes_network
     restart: always
   device_server:
     image: device_server:latest
@@ -53,42 +53,42 @@ services:
     ports:
       - "5000:5000"
     environment:
-      DATABASE_URL: ""
+      DATABASE_URL: "mysql://root:redesdb@172.31.36.74:3306/deviceDB"
       VITE_SERVER_PORT: 5000
-      EMAIL_PASSWORD: ""
-      PRIMARY_EMAIL_TO: ""
-      PRIMARY_EMAIL_FROM: ""
-      SERVICE: ""
+      EMAIL_PASSWORD: "vusi gvow bzed jvqh"
+      PRIMARY_EMAIL_TO: "mateo.vasquez@epn.edu.ec"
+      PRIMARY_EMAIL_FROM: "lab.instrumentacion.epn@gmail.com"
+      SERVICE: "gmail"
       TZ: America/Guayaquil
     networks:
-      - instru_network
+      - redes_network
     depends_on:
-      - testinstru
+      - redesDB
     restart: always
   calendar_app:
     image: calendar_app
     ports:
       - "5174:5174"
     networks:
-      - instru_network
+      - redes_network
     restart: always
   home_app:
     image: home_app
     ports:
       - "5176:5176"
     networks:
-      - instru_network
+      - redes_network
     restart: always
   device_app:
     image: device_app
     ports:
       - "5173:5173"
     networks:
-      - instru_network
+      - redes_network
     restart: always
 
 volumes:
   minio_data:
   mysql_data:
 networks:
-  instru_network:
+  redes_network:

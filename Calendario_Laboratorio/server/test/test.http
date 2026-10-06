@@ -10,15 +10,15 @@ POST http://172.29.72.183:4000/calendar/NewSession
 Content-Type: application/json
 
 {
-    "Asunto": "Laboratorio de Sensores y transductores GR4",
-    "Hora_inicial": "09:00",
-    "Hora_final": "11:00",
+    "Asunto": "Redes Industriales Mecatrónica Gr1",
+    "Hora_inicial": "16:00",
+    "Hora_final": "18:00",
     "Periodicidad": "Semanalmente",
-    "Responsable": "Michelle Viscaino",
-    "Correo_responsable": "michelle.viscaino@epn.edu.ec",
-    "fecha_inicio": "2026-10-02",
+    "Responsable": "Diego Maldonado",
+    "Correo_responsable": "diego.maldonado@epn.edu.ec",
+    "fecha_inicio": "2026-10-01",
     "Equipos_usados": "Ninguno",
-    "laboratorio": "sensores"
+    "laboratorio": "redes"
 }
 
 ### 
