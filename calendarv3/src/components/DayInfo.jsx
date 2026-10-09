@@ -24,7 +24,7 @@ export default function DayInfo({CalendarDays,CreateNewSession, SetCreateNewSess
                             <div className="DayInfoContainer" key={index}
                             style={{display:"grid", gridTemplateRows:`repeat(${AVBHOURS.length +1},12vh)`}}
                             ref={container}>
-                            {day?.sessions && container?.current &&
+                            {day?.sessions && container?.current && (!day?.feriados) &&
                                 day.sessions.map(session =>{
                                     return(
                                         <SessionCard
@@ -43,7 +43,7 @@ export default function DayInfo({CalendarDays,CreateNewSession, SetCreateNewSess
                             {Array.from({length: AVBHOURS.length +1}).map((v,i)=>{
                                     return(
                                         <div className="sessionEmpty" key={i}
-                                        onClick={()=>{if (LABORATORIO!== "general"){
+                                        onClick={()=>{if (LABORATORIO!== "general" && (!day?.feriados)){
                                                 SetCreateNewSession(prev => ({
                                                 ...prev, 
                                                 state:true, 

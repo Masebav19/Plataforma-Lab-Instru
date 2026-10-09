@@ -16,8 +16,8 @@ export default async function readKeyboard() {
     if (laboratorio === "instru" || laboratorio === "sensores" || laboratorio === "general") return {Id: parseInt(Id,10),laboratorio}
     if(Id==='c') return {finish: true}
     return {error: 'No Clave'}
-    }catch{
-        return {error: 'Ocurrio un error'}
+    }catch(e){
+        return {error: `${e}`}
     }finally{
         rl.close()
     }
