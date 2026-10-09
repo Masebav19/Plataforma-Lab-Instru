@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section className="hero">
       <img
-        src="../src/assets/hero-lab.webp"
+        src="../public/hero-lab.webp"
         alt="Vista panoramica del Laboratorio de Instrumentacion Industrial de la EPN"
         className="hero-image"
       />

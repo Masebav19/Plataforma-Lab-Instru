@@ -5,13 +5,11 @@ import Hero from "./components/Hero"
 
 function App() {
   const [Option,SetOption] = useState(undefined)
-  const APP_IP = "172.29.72.183"
   return (
     <>
       <Header
       Option={Option} 
       SetOption={SetOption}
-      APP_IP={APP_IP}
       />
       <main>
         {Option &&
@@ -24,7 +22,6 @@ function App() {
       <Footer
       Option={Option}
       SetOption={SetOption}
-      APP_IP={APP_IP}
       />
     </>
   )

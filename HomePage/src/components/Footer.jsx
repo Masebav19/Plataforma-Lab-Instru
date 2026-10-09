@@ -1,7 +1,7 @@
 
 import './Footer.css'
 
-export default function Footer({SetOption,APP_IP}) {
+export default function Footer({SetOption}) {
   return (
     <footer className="footer">
       <div className="footer-inner">
@@ -25,14 +25,14 @@ export default function Footer({SetOption,APP_IP}) {
           <div className="footer-column">
             <p className="footer-column-title">Enlaces</p>
             <div className="footer-link" onClick={()=>{
-              if(window.innerWidth > 900)SetOption(`http://${APP_IP}:5173`)
-              else window.open(`http://${APP_IP}:5173`)
+              if(window.innerWidth > 900)SetOption(`/device`)
+              else window.open(`/device`)
               }}>
               Prestamos de quipos
             </div>
             <div className="footer-link" onClick={()=>{
-              if(window.innerWidth > 900) SetOption(`https://${APP_IP}:5174`)
-              else window.open(`https://${APP_IP}:5174`)
+              if(window.innerWidth > 900) SetOption(`/calendar`)
+              else window.open(`/calendar`)
               }}>
               Calendario del laboratorio
             </div>

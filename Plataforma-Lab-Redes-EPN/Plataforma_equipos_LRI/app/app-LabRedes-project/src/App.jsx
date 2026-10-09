@@ -1,7 +1,7 @@
 import Panel from './components/panel.jsx'
 
 function App() {
-  const VITE_SERVER_URL = "http://192.168.1.5"
+  const VITE_SERVER_URL = "http://172.29.72.132"
   const PORT = 5000
   return (
     <>

@@ -77,7 +77,7 @@ export default function SessionCard({session, container,User,VITE_SERVER_URL,POR
         SetTicket(result.result)
 
     }
-
+    
     return(
         <div className="Session" 
         style={{position:"absolute",width:"12.5dvw", fontSize:"13px",
@@ -108,7 +108,7 @@ export default function SessionCard({session, container,User,VITE_SERVER_URL,POR
                             <small
                             style={{fontSize:window.innerWidth < 670?"10px":"12px"}}
                             >{window.innerWidth>670?
-                            `${session.Responsable.split(" ")[0]} ${session.Responsable.split(" ")[1].at(0)}.`:
+                            `${session.Responsable.split(" ")[0]} ${session.Responsable.split(" ")[1].at(0)}.   ${session.Asunto.toLowerCase().match(/gr[0-9]*s*[0-9]/)?session.Asunto.toLowerCase().match(/gr[0-9]*s*[0-9]/)[0].toUpperCase():""}`:
                             `${session.Responsable.split(" ")[0].at(0)}${session.Responsable.split(" ")[1].at(0)}`
                             }</small>
                         </div>

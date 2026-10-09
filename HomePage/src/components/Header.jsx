@@ -1,7 +1,7 @@
 
 import './Header.css'
 
-export default function Header({Option,SetOption,APP_IP}) {
+export default function Header({Option,SetOption}) {
   return (
     <header className="header">
       <div className="header-inner">
@@ -14,22 +14,22 @@ export default function Header({Option,SetOption,APP_IP}) {
         </div>
 
         <nav className={`nav-links`}>
-          <div  className={`nav-link${`${Option===`http://${APP_IP}:5173`?" Selected":""}`}`} onClick={() => {
+          <div  className={`nav-link${`${Option===`/device`?" Selected":""}`}`} onClick={() => {
             if (window.innerWidth > 900){
-              if((!Option) || (Option !==`http://${APP_IP}:5173`))SetOption(`http://${APP_IP}:5173`)
+              if((!Option) || (Option !==`/device`))SetOption(`/device`)
               else SetOption(undefined)
             }else{
-              window.open(`http://${APP_IP}:5173`)
+              window.open(`/device`)
             }
             }}>
             Prestamos
           </div>
-          <div  className={`nav-link${`${Option===`https://${APP_IP}:5174`?" Selected":""}`}`} onClick={() => {
+          <div  className={`nav-link${`${Option===`/calendar`?" Selected":""}`}`} onClick={() => {
             if (window.innerWidth > 900){
-              if((!Option) || (Option !== `https://${APP_IP}:5174`))SetOption(`https://${APP_IP}:5174`)
+              if((!Option) || (Option !== `/calendar`))SetOption(`/calendar`)
               else SetOption(undefined)
             }else{
-              window.open(`https://${APP_IP}:5174`)
+              window.open(`/calendar`)
             }
             }}>
             Calendario
