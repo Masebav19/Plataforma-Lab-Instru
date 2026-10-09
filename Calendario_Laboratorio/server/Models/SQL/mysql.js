@@ -63,7 +63,7 @@ export default class MySQLClient{
                     [laboratorio, year,month,date,31]
                 )
                 const response2 = await con.query("SELECT * FROM sesiones WHERE laboratorio = ? AND Year = ? AND Month = ? AND Date BETWEEN ? AND ?",
-                    [laboratorio, year,month+1,1,LastDayWeek.getDate()]
+                    [laboratorio,month!=11?year:year+1,month!=11?month+1:0,1,LastDayWeek.getDate()]
                 )
                 if(response2[0].length > 0 || response[0].length > 0) {
                     await con.end()
