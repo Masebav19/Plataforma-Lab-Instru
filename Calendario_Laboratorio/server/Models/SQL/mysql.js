@@ -16,7 +16,7 @@ export default class MySQLClient{
         await con.connect()
         await con.query("USE instrucalendar")
         const result = await con.query("SELECT * FROM sesiones WHERE Year = ? AND Month = ? AND Date = ?",[year,month,date])
-        con.end()
+        await con.end()
         return result[0] || []
     }
     async getSessionbymonth ({year,month}){
@@ -25,7 +25,7 @@ export default class MySQLClient{
         await con.connect()
         await con.query("USE instrucalendar")
         const result = await con.query("SELECT * FROM sesiones WHERE Year = ? AND Month = ?",[year,month-1])
-        con.end()
+        await con.end()
         return result[0] || []
     }
 
@@ -40,13 +40,21 @@ export default class MySQLClient{
                 const response = await con.query("SELECT * FROM sesiones WHERE laboratorio = ? AND Year = ? AND Month = ? AND Date BETWEEN ? AND ?",
                     [laboratorio,year,month,date,date+7]
                 )
-                if(response[0].length > 0) return response[0]
+                if(response[0].length > 0) {
+                    await con.end()
+                    return response[0]
+                }
+                await con.end()
                 return []
             }else{
                 const response = await con.query("SELECT * FROM sesiones WHERE (laboratorio = 'sensores' OR laboratorio = 'instru') AND Year = ? AND Month = ? AND Date BETWEEN ? AND ? AND LOWER(Asunto) NOT LIKE '%Reserva%'",
                     [year,month,date,date+7]
                 )
-                if(response[0].length > 0) return response[0]
+                if(response[0].length > 0) {
+                    await con.end()
+                    return response[0]
+                }
+                await con.end()
                 return []
             }
         }else{
@@ -57,7 +65,11 @@ export default class MySQLClient{
                 const response2 = await con.query("SELECT * FROM sesiones WHERE laboratorio = ? AND Year = ? AND Month = ? AND Date BETWEEN ? AND ?",
                     [laboratorio, year,month+1,1,LastDayWeek.getDate()]
                 )
-                if(response2[0].length > 0 && response[0].length > 0) return [...response[0],...response2[0]]
+                if(response2[0].length > 0 && response[0].length > 0) {
+                    await con.end()
+                    return [...response[0],...response2[0]]
+                }
+                await con.end()
                 return []
             }else{
                 const response = await con.query("SELECT * FROM sesiones WHERE (laboratorio = 'sensores' OR laboratorio = 'instru') AND Year = ? AND Month = ? AND Date BETWEEN ? AND ? AND LOWER(Asunto) NOT LIKE '%Reserva%'",
@@ -66,7 +78,11 @@ export default class MySQLClient{
                 const response2 = await con.query("SELECT * FROM sesiones WHERE (laboratorio = 'sensores' OR laboratorio = 'instru') AND Year = ? AND Month = ? AND Date BETWEEN ? AND ? AND LOWER(Asunto) NOT LIKE '%Reserva%'",
                     [year,month+1,1,LastDayWeek.getDate()]
                 )
-                if(response2[0].length > 0 && response[0].length > 0) return [...response[0],...response2[0]]
+                if(response2[0].length > 0 && response[0].length > 0) {
+                    await con.end()
+                    return [...response[0],...response2[0]]
+                }
+                await con.end()
                 return []
             }
         }
@@ -78,7 +94,7 @@ export default class MySQLClient{
         await con.connect()
         await con.query("USE instrucalendar")
         const result = await con.query("SELECT * FROM feriados WHERE Year = ? AND Month = ?",[year,month-1])
-        con.end()
+        await con.end()
         return result[0] || []
     }
 
@@ -89,7 +105,7 @@ export default class MySQLClient{
         const result = await con.query(`INSERT INTO sesiones (Asunto, Hora_inicial, Hora_final, Periodicidad, Responsable, Correo_responsable, Year, Month, Date, fecha_inicio, Mesas, Equipos_usados,laboratorio) VALUES ${sessions.map(session =>{
             return `('${session.Asunto}','${session.Hora_inicial}','${session.Hora_final}','${session.Periodicidad}','${session.Responsable}','${session.Correo_responsable}',${session.Year},${session.Month},${session.Date},'${session.fecha_inicio}','${session.Mesas}','${session.Equipos_usados}','${session.laboratorio}')`
         }).join(",")}`)
-        con.end()
+        await con.end()
         return result[0] ? true : false
     }
 
@@ -99,12 +115,12 @@ export default class MySQLClient{
         await con.query("USE instrucalendar")
         const IsThaSession = await con.query("SELECT * FROM sesiones WHERE Id = ?",[Id])
         if(!Boolean(IsThaSession[0][0]?.Correo_responsable)) {
-            con.end()
+            await con.end()
             return {error: "No existe la session"}
         }
         await con.query("DELETE FROM ticket WHERE id_session = ?",[Id])
         const result = await con.query("DELETE FROM sesiones WHERE iD = ?",[Id])
-        con.end()
+        await con.end()
         return result[0] ? result[0] : {error: "No se puede borrar la session"}
     }
 
@@ -116,7 +132,7 @@ export default class MySQLClient{
         if(UserExist[0].length > 0) {
             await con.query("INSERT INTO lab_logs_sessions (UUID, correo, Nombre, Apellido, Resultado) VALUES (?,?,?,?,?)",
                 [UserExist[0][0].UUID, Correo, Nombre, Apellido, "Creacion de usuario fallida: El usuario ya existe"])
-            con.end()
+            await con.end()
             return {error: "El usuario ya existe"}
         }
 
@@ -126,7 +142,7 @@ export default class MySQLClient{
         if(result[0].affectedRows === 0) {
             await con.query("INSERT INTO lab_logs_sessions (UUID, correo, Nombre, Apellido, Resultado) VALUES (?,?,?,?,?)",
                 [UUID, Correo, Nombre, Apellido, "Creacion de usuario fallida: No se pudo crear el usuario"])
-            con.end()
+            await con.end()
             return {error: "No se pudo crear el usuario"}
         }
         const result2 = await con.query("INSERT INTO credenciales (UUID, password) VALUES (?,?)",[UUID, Password])
@@ -134,12 +150,12 @@ export default class MySQLClient{
             await con.query("INSERT INTO lab_logs_sessions (UUID, correo, Nombre, Apellido, Resultado) VALUES (?,?,?,?,?)",
                 [UUID, Correo, Nombre, Apellido, "Creacion de usuario fallida: No se pudo crear la contraseña"])
             con.query("DELETE FROM integrantes WHERE UUID = ?",[UUID])
-            con.end()
+            await con.end()
             return {error: "No se pudo crear la contraseña"}
         }
         await con.query("INSERT INTO lab_logs_sessions (UUID, correo, Nombre, Apellido, Resultado) VALUES (?,?,?,?,?)",
             [UUID, Correo, Nombre, Apellido, "Creacion de usuario: Exitosa"])
-        con.end()
+        await con.end()
         return {result: Correo,Id: UUID, User: {Apellido, Nombre, Tipo, UUID, correo: Correo}}
     }
 
@@ -151,7 +167,7 @@ export default class MySQLClient{
         if(UserExist[0].affectedRows === 0) {
             await con.query("INSERT INTO lab_logs_sessions (UUID, correo, Nombre, Apellido, Resultado) VALUES (?,?,?,?,?)",
                 ["NA", Correo, "NA", "NA", "LogIn: No se encontró el usuario"])
-            con.end()
+            await con.end()
             return {error: "El usuario no existe"}
         }
         const UUID = UserExist[0][0].UUID
@@ -159,13 +175,13 @@ export default class MySQLClient{
         if(!(await bcrypt.compare(PasswordExist[0][0].password,Password))) {
             await con.query("INSERT INTO lab_logs_sessions (UUID, correo, Nombre, Apellido, Resultado) VALUES (?,?,?,?,?)",
                 [UserExist[0][0].UUID, Correo, UserExist[0][0].Nombre, UserExist[0][0].Apellido, "LogIn: Contraseña Incorrecta"])
-            con.end()
+            await con.end()
             return {error: "La contraseña es incorrecta"}
         }
 
         await con.query("INSERT INTO lab_logs_sessions (UUID, correo, Nombre, Apellido, Resultado) VALUES (?,?,?,?,?)",
             [UserExist[0][0].UUID, Correo, UserExist[0][0].Nombre, UserExist[0][0].Apellido, "LogIn: Exitoso"])
-        con.end()
+        await con.end()
         return {result: Correo, Id: UserExist[0][0].UUID, User: UserExist[0][0]}
     }
     async DeleteUser({Correo, Password}){
@@ -176,7 +192,7 @@ export default class MySQLClient{
         if(UserExist[0].affectedRows === 0) {
             await con.query("INSERT INTO lab_logs_sessions (UUID, correo, Nombre, Apellido, Resultado) VALUES (?,?,?,?,?)",
                 ["NA", Correo, "NA", "NA", "Borrar usuario: No se encontró el usuario"])
-            con.end()
+            await con.end()
             return {error: "El usuario no existe"}
         }
         const UUID = UserExist[0][0].UUID
@@ -184,7 +200,7 @@ export default class MySQLClient{
         if(PasswordExist[0][0].password !== Password) {
             await con.query("INSERT INTO lab_logs_sessions (UUID, correo, Nombre, Apellido, Resultado) VALUES (?,?,?,?,?)",
                 [PasswordExist[0][0].UUID, Correo, PasswordExist[0][0].Nombre, PasswordExist[0][0].Apellido, "Borrar usuario: Contraseña incorrecta"])
-            con.end()
+            await con.end()
             return {error: "La contraseña es incorrecta"}
         }
         await con.query("DELETE FROM credenciales WHERE UUID = ?",[UUID])
@@ -192,7 +208,7 @@ export default class MySQLClient{
 
         await con.query("INSERT INTO lab_logs_sessions (UUID, correo, Nombre, Apellido, Resultado) VALUES (?,?,?,?,?)",
                 [UserExist[0][0].UUID, Correo, UserExist[0][0].Nombre, UserExist[0][0].Apellido, "Borrar usuario: Exitoso"])
-        con.end()
+        await con.end()
         return {result: true}
     }
     async OpenTicket({Correo, Asunto, Fecha}){
@@ -201,7 +217,7 @@ export default class MySQLClient{
         await con.query("USE instrucalendar")
         const UserExist = await con.query("SELECT * FROM integrantes WHERE correo = ?",[Correo])
         if(UserExist[0].affectedRows === 0) {
-            con.end()
+            await con.end()
             return {error: "El usuario no existe"}
         }
         const SessionDate = new Date(Fecha)
@@ -211,7 +227,7 @@ export default class MySQLClient{
         const SessionExist = await con.query("SELECT * FROM sesiones WHERE Year = ? AND Month = ? AND Date = ? AND Asunto = ?",
             [SessionYear, SessionMonth, SessionDay, Asunto])
         if(!SessionExist[0][0]?.Id) {
-            con.end()   
+            await con.end()   
             return {error: "La sesión no existe"}
         }
         const UUID = UserExist[0][0].UUID
@@ -220,11 +236,11 @@ export default class MySQLClient{
         const result = await con.query("INSERT INTO ticket (id_ticket, id_session, UUID_usuario, fecha_registro) VALUES (?,?,?,?)",
             [TicketID, SessionExist[0][0].Id, UUID, registerDate])
         if(result[0].affectedRows === 0) {
-            con.end()
+            await con.end()
             return {error: "No se pudo crear el ticket"}
         }
         const result2 = await con.query("SELECT * FROM ticket where id_session=?",[SessionExist[0][0].Id])
-        con.end()
+        await con.end()
         return {result: result2[0][0]}
     }
 
@@ -234,22 +250,22 @@ export default class MySQLClient{
         await con.query("USE instrucalendar")
         const TicketExist = await con.query("SELECT * FROM ticket WHERE id_ticket = ?",[id_ticket])
         if(TicketExist[0].affectedRows === 0) {
-            con.end()
+            await con.end()
             return {error: "El ticket no existe"}
         }
         const cierreDate = (new Date()).toString()
         const result = await con.query("UPDATE ticket SET fecha_cierre = ?, observaciones = ?, image_path = ?, equipos_usados = ? WHERE id_ticket = ?"
             ,[cierreDate, observaciones, imagePath || "Ninguno", equipos_usados, id_ticket])
         if(result[0].affectedRows === 0) {
-            con.end()
+            await con.end()
             return {error: "No se pudo cerrar el ticket"}
         }
         if(!(observaciones.includes("Ninguno"))){
             const session_data = await con.query("SELECT * FROM sesiones WHERE Id=?",[TicketExist[0][0].id_session])
-            con.end()
+            await con.end()
             return{result:true, session_data:session_data[0][0]}
         }
-        con.end()
+        await con.end()
         return {result: true}
     }
     async ReadNewTickets(){
@@ -257,7 +273,7 @@ export default class MySQLClient{
         await con.connect()
         await con.query("USE instrucalendar")
         const NewTickets = await con.query("SELECT * FROM ticket INNER JOIN sesiones ON sesiones.`Id` = id_session WHERE fecha_cierre IS NULL")
-        con.end()
+        await con.end()
         if(NewTickets[0].affectedRows === 0) {  
             return {error: "No existen tickets abiertos"}
         }
@@ -269,7 +285,7 @@ export default class MySQLClient{
         await con.connect()
         await con.query("USE instrucalendar")
         const ClosedTickets = await con.query("SELECT * FROM ticket INNER JOIN sesiones ON sesiones.`Id` = id_session WHERE fecha_cierre IS NOT NULL")
-        con.end()
+        await con.end()
         if(ClosedTickets[0].affectedRows === 0) return {error: "No existen tickets abiertos"}
         return {result: ClosedTickets[0]}
     }
@@ -278,7 +294,7 @@ export default class MySQLClient{
         await con.connect()
         await con.query("USE instrucalendar")
         const PathImage = await con.query("SELECT image_path FROM ticket WHERE id_ticket = ?",[id_ticket])
-        con.end()
+        await con.end()
         if(PathImage[0].length === 0) return {error: "No existe ticket"}
         return {ImagePath: PathImage[0][0].image_path}
     }
@@ -295,7 +311,7 @@ export default class MySQLClient{
         const query = await con.query("SELECT * FROM sesiones WHERE Year = ? AND Month = ? AND Date = ? AND Hora_inicial = ?",
             [Year,Month,date, hour]
         )
-        con.end()
+        await con.end()
         if(query[0].length > 0) {
             if(query[0].length === 1)return {session: query[0]}
             const actualSession = query[0].find(session =>{
@@ -321,7 +337,7 @@ export default class MySQLClient{
         }
         const query = await con.query("UPDATE sesiones SET Equipos_usados = ? WHERE Asunto = ? AND Year = ? AND Month = ? AND Date = ?",
             [NewObservacion,SessionQuery[0][0].Asunto,SessionQuery[0][0].Year,SessionQuery[0][0].Month,SessionQuery[0][0].Date])
-        con.end()
+        await con.end()
         if(query[0].affectedRows > 0) return {result: true} 
         return {error: true}
     }
