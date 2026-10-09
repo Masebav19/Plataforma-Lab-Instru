@@ -34,11 +34,11 @@ export default class MySQLClient{
         await con.connect()
         await con.query("USE instrucalendar")
         const DateWeek = new Date(year,month,date)
-        const LastDayWeek = new Date(year,month,date+7)
+        const LastDayWeek = new Date(year,month,date+6)
         if(DateWeek.getMonth()=== LastDayWeek.getMonth()){
             if(laboratorio !== "general"){
                 const response = await con.query("SELECT * FROM sesiones WHERE laboratorio = ? AND Year = ? AND Month = ? AND Date BETWEEN ? AND ?",
-                    [laboratorio,year,month,date,date+7]
+                    [laboratorio,year,month,date,date+6]
                 )
                 if(response[0].length > 0) {
                     await con.end()
@@ -48,7 +48,7 @@ export default class MySQLClient{
                 return []
             }else{
                 const response = await con.query("SELECT * FROM sesiones WHERE (laboratorio = 'sensores' OR laboratorio = 'instru') AND Year = ? AND Month = ? AND Date BETWEEN ? AND ? AND LOWER(Asunto) NOT LIKE '%Reserva%'",
-                    [year,month,date,date+7]
+                    [year,month,date,date+6]
                 )
                 if(response[0].length > 0) {
                     await con.end()
@@ -65,7 +65,7 @@ export default class MySQLClient{
                 const response2 = await con.query("SELECT * FROM sesiones WHERE laboratorio = ? AND Year = ? AND Month = ? AND Date BETWEEN ? AND ?",
                     [laboratorio, year,month+1,1,LastDayWeek.getDate()]
                 )
-                if(response2[0].length > 0 && response[0].length > 0) {
+                if(response2[0].length > 0 || response[0].length > 0) {
                     await con.end()
                     return [...response[0],...response2[0]]
                 }
