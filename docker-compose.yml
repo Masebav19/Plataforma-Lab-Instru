@@ -32,15 +32,15 @@ services:
     ports:
       - "4000:4000"
     environment:
-      SQL_URL: "mysql://root:testinstru@172.29.72.132:3306"
-      EMAIL_PASSWORD: "vusi gvow bzed jvqh"
-      PRIMARY_EMAIL_TO: "johnny.chuqui@epn.edu.ec"
-      PRIMARY_EMAIL_FROM: "lab.instrumentacion.epn@gmail.com"
-      SECUNDARY_EMAIL_TO: "silvana.gamboa@epn.edu.ec"
-      SERVICE: "gmail"
-      MINIO_IP: "local-minio"
-      BUCKET_NAME: "testinstru"
-      JWT_SECRET: "d00ceb4e1d182f1327fa150a33243e2507b1d80a60f0870939cd6c2474b3e097d4c8a75a6b51f3b465e2d339a2d2fb413c1cc8385f09128c45505582e661319b"
+      SQL_URL: ""
+      EMAIL_PASSWORD: ""
+      PRIMARY_EMAIL_TO: ""
+      PRIMARY_EMAIL_FROM: ""
+      SECUNDARY_EMAIL_TO: ""
+      SERVICE: ""
+      MINIO_IP: ""
+      BUCKET_NAME: ""
+      JWT_SECRET: ""
       APP_URL: "https://172.29.72.132"
       SERVER_DEVICE: "http://172.29.72.132:5000"
       TZ: America/Guayaquil
@@ -53,12 +53,12 @@ services:
     ports:
       - "5000:5000"
     environment:
-      DATABASE_URL: "mysql://root:testinstru@testinstru:3306/deviceDB"
+      DATABASE_URL: ""
       VITE_SERVER_PORT: 5000
-      EMAIL_PASSWORD: "vusi gvow bzed jvqh"
-      PRIMARY_EMAIL_TO: "johnny.chuqui@epn.edu.ec"
-      PRIMARY_EMAIL_FROM: "lab.instrumentacion.epn@gmail.com"
-      SERVICE: "gmail"
+      EMAIL_PASSWORD: ""
+      PRIMARY_EMAIL_TO: ""
+      PRIMARY_EMAIL_FROM: ""
+      SERVICE: ""
       TZ: America/Guayaquil
     networks:
       - instru_network
