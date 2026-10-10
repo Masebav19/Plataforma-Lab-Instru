@@ -110,8 +110,8 @@ export default class Calendar{
                 endpoint: `http://${process.env.MINIO_IP||"127.0.0.1"}:9000`, // El puerto de tu contenedor Docker
                 forcePathStyle: true, // Necesario para que funcione con IPs locales/MinIO
                 credentials: {
-                    accessKeyId: 'minioadmin',     // Las mismas credenciales de tu docker-compose
-                    secretAccessKey: 'minioadminpassword'
+                    accessKeyId: process.env.MINIO_USER,     // Las mismas credenciales de tu docker-compose
+                    secretAccessKey: process.env.MINIO_PASSWORD
                 }
             });
             await s3Client.send(new PutObjectCommand(uploadParams));
