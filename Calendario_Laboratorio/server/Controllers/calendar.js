@@ -160,8 +160,8 @@ export default class Calendar{
                 endpoint: `http://${process.env.MINIO_IP}:9000`,
                 forcePathStyle: true,
                 credentials: {
-                    accessKeyId: 'minioadmin',
-                    secretAccessKey: 'minioadminpassword'
+                    accessKeyId: process.env.MINIO_USER,     // Las mismas credenciales de tu docker-compose
+                    secretAccessKey: process.env.MINIO_PASSWORD
                 }
             });
             const params = {
