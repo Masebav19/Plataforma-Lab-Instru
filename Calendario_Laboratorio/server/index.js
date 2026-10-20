@@ -7,7 +7,7 @@ dotenv.config()
 const server = express()
 
 server.use(cors({
-    origin: process.env.APP_URL,
+    origin: [process.env.APP_URL,process.env.ADMIN_URL],
     credentials: true
 }))
 server.use(express.json())

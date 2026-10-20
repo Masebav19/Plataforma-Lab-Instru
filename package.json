@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently -c \"cyan,magenta,yellow,blue,white\" \"npm run dev --prefix ./Plataforma-Lab-Redes-EPN/Plataforma_equipos_LRI/server\" \"npm run dev --prefix ./Calendario_Laboratorio/server\" \"npm run dev --prefix ./calendarv3\" \"npm run dev --prefix ./HomePage\" \"npm run dev --prefix ./Plataforma-Lab-Redes-EPN/Plataforma_equipos_LRI/app/app-LabRedes-project\""
+    "dev": "cls && concurrently -c \"cyan,magenta,yellow,blue,white,blue\" \"npm run dev --prefix ./Calendario_Laboratorio/server\" \"npm run dev --prefix ./Plataforma-Lab-Redes-EPN/Plataforma_equipos_LRI/server\" \"npm run dev --prefix ./calendarv3\" \"npm run dev --prefix ./HomePage\" \"npm run dev --prefix ./Plataforma-Lab-Redes-EPN/Plataforma_equipos_LRI/app/app-LabRedes-project\" \"npm run dev --prefix ./admindashboard\""
   },
   "repository": {
     "type": "git",

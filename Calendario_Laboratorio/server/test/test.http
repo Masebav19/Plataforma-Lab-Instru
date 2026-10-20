@@ -2,33 +2,14 @@
 GET http://localhost:4000/calendar/getDaysbyMonth/10/2025
 
 ###
-GET http://127.0.0.1:4000/calendar/getDaysbyWeek/9/2026/21/general
-
+GET http://172.29.73.193:4000/calendar/getDaysbyWeek/10/2026/27/sensores
 ### stefany.villarreal@epn.edu.ec
 
 POST http://172.29.72.183:4000/calendar/NewSession
 Content-Type: application/json
 
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "Asunto": "Laboratorio de Sensores y transductores GR4",
-    "Hora_inicial": "09:00",
-    "Hora_final": "11:00",
-    "Periodicidad": "Semanalmente",
-    "Responsable": "Michelle Viscaino",
-    "Correo_responsable": "michelle.viscaino@epn.edu.ec",
-    "fecha_inicio": "2026-10-02",
-=======
-    "Asunto": "Laboratorio de Instrumentación Gr3S1",
-    "Hora_inicial": "08:00",
-    "Hora_final": "09:00",
-    "Periodicidad": "Semanalmente",
-    "Responsable": "Alexis Copara",
-    "Correo_responsable": "alexis.copara@epn.edu.ec",
-    "fecha_inicio": "2026-09-30",
->>>>>>> 00433a7e0ded35a1daa52a2b5f4dad6629d9c0fd
-=======
+
     "Asunto": "Laboratorio de instrumentación Gr3S2",
     "Hora_inicial": "11:00",
     "Hora_final": "12:00",
@@ -36,7 +17,6 @@ Content-Type: application/json
     "Responsable": "Alex Oña",
     "Correo_responsable": "alex.ona@epn.edu.ec",
     "fecha_inicio": "2026-10-02",
->>>>>>> f197dc93879bd2fc0ca24fea635db9cc567aa482
     "Mesas": "Mesa1,Mesa2,Mesa3",
     "Equipos_usados": "Ninguno",
     "laboratorio": "sensores"
@@ -57,11 +37,11 @@ POST http://127.0.0.1:4000/calendar/SignUp
 Content-Type: application/json
 
 {
-    "Nombre": "Alguien",
-    "Apellido": "Alguien",
-    "Correo": "alguien@epn.edu.ec",
-    "Tipo": "Técnico docente",
-    "Password": "labRedes"
+    "Nombre": "Laboratorio",
+    "Apellido": "Instrumentación",
+    "Correo": "laboratorio.instrumentacion@epn.edu.ec",
+    "Tipo": "Administrador",
+    "Password": "Admin2024*"
 }
 
 ###
@@ -69,8 +49,8 @@ POST http://127.0.0.1:4000/calendar/LogIn
 Content-Type: application/json
 
 {
-    "Correo": "mateo.vasquez@epn.edu.ec",
-    "Password": "labRedes"
+    "Correo": "laboratorio.instrumentacion@epn.edu.ec",
+    "Password": "$2b$10$5hSELbiIArfmotJ0T/OxaeAoBE9W2SoZiS52dqpmRAF11PGudkvbe"
 }
 
 ###

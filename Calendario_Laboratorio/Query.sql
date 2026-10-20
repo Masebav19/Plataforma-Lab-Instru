@@ -1,8 +1,5 @@
-<<<<<<< HEAD
--- Active: 1790603982442@@172.29.72.183@3306@instrucalendar
-=======
--- Active: 1790603033420@@127.0.0.1@3306@instrucalendarlendar
->>>>>>> 00433a7e0ded35a1daa52a2b5f4dad6629d9c0fd
+-- Active: 1776560593667@@127.0.0.1@3306@instrucalendar
+
 CREATE DATABASE instrucalendar;
 
 USE instrucalendar;
@@ -263,6 +260,9 @@ INSERT INTO `devicelist` (`Id`, `codigo`, `Tipo`, `Marca`, `Modelo`, `Especifica
 UPDATE sesiones SET `Mesas` = 'Mesa4,Mesa5,Mesa6' WHERE laboratorio = 'instru'
 
 SELECT * FROM sesiones WHERE `Equipos_usados` not LIKE 'Ninguno'
-=======
+
 SELECT * FROM sesiones WHERE Equipos_usados NOT LIKE "Ninguno"
->>>>>>> 00433a7e0ded35a1daa52a2b5f4dad6629d9c0fd
+
+SELECT * FROM sesiones WHERE `Year` = 2026 AND `Month` = 9 AND `Date` BETWEEN 25 AND 31;
+
+SELECT * FROM sesiones WHERE laboratorio = 'sensores' AND Year = 2026 AND Month = 0 AND Date BETWEEN 0 AND 2
