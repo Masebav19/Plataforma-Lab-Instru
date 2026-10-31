@@ -76,7 +76,7 @@ export default class MySQLClient{
                     [year,month,date,31]
                 )
                 const response2 = await con.query("SELECT * FROM sesiones WHERE (laboratorio = 'sensores' OR laboratorio = 'instru') AND Year = ? AND Month = ? AND Date BETWEEN ? AND ? AND LOWER(Asunto) NOT LIKE '%Reserva%'",
-                    [year,month+1,1,LastDayWeek.getDate()]
+                    [month!=11?year:year+1,month!=11?month+1:0,1,LastDayWeek.getDate()]
                 )
                 if(response2[0].length > 0 && response[0].length > 0) {
                     await con.end()
