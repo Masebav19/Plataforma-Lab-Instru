@@ -38,14 +38,14 @@ services:
       PRIMARY_EMAIL_FROM: ""
       SECUNDARY_EMAIL_TO: ""
       SERVICE: ""
-      MINIO_IP: ""
+      MINIO_IP: "local-minio"
       BUCKET_NAME: ""
       JWT_SECRET: ""
-      APP_URL: "https://172.29.72.132"
-      SERVER_DEVICE: "http://172.29.72.132:5000"
-      MINIO_USER: "labinstru"
-      MINIO_PASSWORD : "labinstru2026"
-      TZ: America/Guayaquil
+      APP_URL: "https://172.29.74.58"
+      SERVER_DEVICE: "http://172.29.74.58:5000"
+      MINIO_USER: ""
+      MINIO_PASSWORD : ""
+      TZ: America/Bogota
     networks:
       - instru_network
     restart: always
@@ -55,7 +55,7 @@ services:
     ports:
       - "5000:5000"
     environment:
-      DATABASE_URL: ""
+      DATABASE_URL: "mysql://root:@testinstru:3306/deviceDB"
       VITE_SERVER_PORT: 5000
       EMAIL_PASSWORD: ""
       PRIMARY_EMAIL_TO: ""
@@ -97,6 +97,8 @@ services:
     restart: always
     volumes:
       - ./deploy/certs:/app/certs:ro
+    environment:
+      - TZ=Etc/GMT+5
 
 volumes:
   minio_data:

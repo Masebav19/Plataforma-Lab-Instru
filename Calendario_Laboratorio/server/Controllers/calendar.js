@@ -47,12 +47,12 @@ export default class Calendar{
         const result = await SignUp({Nombre, Apellido, Correo, Tipo, Password})
         if(result?.error) return res.json({error: result.error}).status(400)
         const token = jwt.sign({id: result.Id},process.env.JWT_SECRET,{
-            expiresIn: "2m"
+            expiresIn: "30m"
         })
         res.cookie('access_token',token,{
              // El frontend no puede leerla (mitiga ataques XSS)
             sameSite: 'strict', // Protege contra ataques CSRF
-            maxAge: 2 * 60 * 1000
+            maxAge: 30 * 60 * 1000
         })
         res.json({result, expiresAt: 2*60*1000})
     }
@@ -63,9 +63,9 @@ export default class Calendar{
         const result = await LogIn({Correo, Password})
         if(result?.error) return res.json({error: result.error}).status(400)
         const token = jwt.sign({id: result.Id},process.env.JWT_SECRET,{
-            expiresIn: "2m"
+            expiresIn: "30m"
         })
-        const expiresAt = 2*60*1000
+        const expiresAt = 30*60*1000
         res.cookie('access_token',token,{
              // El frontend no puede leerla (mitiga ataques XSS)
             sameSite: 'strict', // Protege contra ataques CSRF

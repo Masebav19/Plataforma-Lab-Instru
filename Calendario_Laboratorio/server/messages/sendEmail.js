@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 export async function SenEmail(data={},asunto=""){
-    let DataEmailToSend = emailSchema;
+    let DataEmailToSend = {...emailSchema};
     DataEmailToSend.To = DataEmailToSend.To.concat(';',data.email)    
     if (asunto.includes("Reserva")){
         DataEmailToSend.To = DataEmailToSend.To.concat(';',process.env.SECUNDARY_EMAIL_TO) 
