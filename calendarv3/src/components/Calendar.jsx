@@ -27,6 +27,8 @@ export default function Calendar({VITE_SERVER_URL, PORT,LABORATORIOS}){
         const result = await response.json()
         if (result?.result){
             window.localStorage.removeItem('expiresAt')
+            window.localStorage.removeItem('Timestamp')
+            window.localStorage.removeItem('User')
             SetUser(undefined)
         }
     }
@@ -50,6 +52,22 @@ export default function Calendar({VITE_SERVER_URL, PORT,LABORATORIOS}){
             SetCalendarDays(result)
         })
     },[])
+
+    useEffect(()=>{
+        const expiresAt = window.localStorage.getItem('expiresAt')
+        const Timestamp = window.localStorage.getItem('Timestamp')
+        if(expiresAt && Timestamp){
+        const elapsedTime = (new Date()).getTime() - parseInt(Timestamp)
+        const timeRemaining = parseInt(expiresAt) - elapsedTime 
+        if (timeRemaining <= 0) {
+            void handleLogout()
+            return
+        }
+        SetUser(JSON.parse(window.localStorage.getItem('User')))
+        setAutologOut(timeRemaining)
+        }
+    },[])
+    
     useEffect(()=>{
         window.localStorage.getItem('CalendarDate')? now.current=new Date(window.localStorage.getItem('CalendarDate')):now.current = new Date()
         const month = now.current.getMonth()+1

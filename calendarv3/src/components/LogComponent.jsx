@@ -36,11 +36,14 @@ export default function LogComponent ({SetUser,VITE_SERVER_URL, PORT,SetStep,Set
             const data = await RequestsManager({VITE_SERVER_URL,PORT,URL,BODY,METHOD})
             if (data?.error) return alert(data.error)
             window.localStorage.setItem('expiresAt',data.expiresAt)
+            const now = new Date()
+            window.localStorage.setItem('Timestamp',String(now.getTime()))
             try{
                 SetStep(1)
             }catch{
                 SetLogInDialog(false)
             }finally{
+                window.localStorage.setItem('User',JSON.stringify(data.result))
                 return SetUser(data.result)
             }
                 
